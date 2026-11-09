@@ -1,20 +1,20 @@
 {
-  "generatedAt": "2026-11-09T22:57:19.751Z",
+  "generatedAt": "2026-11-09T23:25:10.307Z",
   "stale": false,
   "comex": {
     "symbol": "HG=F",
     "name": "COMEX Copper Futures",
     "currency": "USD",
     "unit": "lb",
-    "price": 6.3825,
+    "price": 6.389,
     "previousClose": 6.403,
-    "change": -0.0205,
-    "changePct": -0.32,
-    "marketTime": "2026-11-09T21:59:59.000Z"
+    "change": -0.014,
+    "changePct": -0.22,
+    "marketTime": "2026-11-09T23:15:03.000Z"
   },
   "conversions": {
-    "usdPerTonne": 14071,
-    "eurPerTonne": 12571,
+    "usdPerTonne": 14085,
+    "eurPerTonne": 12584,
     "eurPerUsd": 0.89342
   }
 }
