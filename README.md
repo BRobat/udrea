@@ -40,4 +40,4 @@ npm run fetch     # fetch real news + prices into site/data/
 npm run serve     # preview site/ locally
 ```
 
-To add a news source, add an entry to `scripts/feeds.json`. Set `copperOnly: false` for general mining feeds, so that only items mentioning copper are kept.
+To add a news source, add an entry to `scripts/feeds.json`. Every item from every feed must mention copper (in its title, summary or categories) to be kept. Publisher spellings are merged in `canonicalSource()` in `scripts/lib.mjs`.
