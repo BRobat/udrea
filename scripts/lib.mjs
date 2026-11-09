@@ -117,11 +117,7 @@ export function normalizeItem(item, feed) {
   const date = dateStr ? new Date(dateStr) : null;
   const published = date && !Number.isNaN(date.getTime()) ? date.toISOString() : null;
 
-  let image = null;
-  const enc = item.enclosure;
-  if (enc && enc.url && /^image\//.test(enc.type || 'image/') && isHttpUrl(enc.url)) image = enc.url;
-  const media = item['media:content'] || item['media:thumbnail'];
-  if (!image && media && media.$ && isHttpUrl(media.$.url)) image = media.$.url;
+  const image = extractItemImage(item);
 
   return { title, link: item.link, source, published, summary, image };
 }
@@ -141,6 +137,46 @@ export function unifySourceSpellings(articles) {
     best.set(key, [...byName].sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0]))[0][0]);
   }
   return articles.map((a) => (a && a.source ? { ...a, source: best.get(a.source.toLowerCase()) } : a));
+}
+
+/** Best image URL carried by an RSS item itself (enclosure, media tags, or first <img> in the content). */
+export function extractItemImage(item) {
+  const candidates = [];
+  const enc = item.enclosure;
+  if (enc && enc.url && /^image\//.test(enc.type || 'image/')) candidates.push(enc.url);
+  for (const key of ['media:content', 'media:thumbnail']) {
+    const m = item[key];
+    for (const entry of Array.isArray(m) ? m : [m]) {
+      if (entry && entry.$ && entry.$.url && (!entry.$.medium || entry.$.medium === 'image')) candidates.push(entry.$.url);
+    }
+  }
+  const html = `${item['content:encoded'] || ''} ${item.content || ''}`;
+  for (const m of html.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)) candidates.push(m[1].replace(/&amp;/g, '&'));
+  return candidates.find((u) => isHttpUrl(u) && !isTrackingPixel(u)) || null;
+}
+
+function isTrackingPixel(url) {
+  return /(feedburner|pixel|tracking|1x1|spacer|gravatar|blank\.gif|\/emoji\/)/i.test(url);
+}
+
+/** Pull og:image / twitter:image out of an article page's HTML, resolved against the page URL. */
+export function extractOgImage(html, pageUrl) {
+  const metas = String(html || '').match(/<meta\b[^>]*>/gi) || [];
+  const wanted = ['og:image:secure_url', 'og:image', 'og:image:url', 'twitter:image', 'twitter:image:src'];
+  const found = {};
+  for (const tag of metas) {
+    const key = /(?:property|name)\s*=\s*["']([^"']+)["']/i.exec(tag)?.[1]?.toLowerCase();
+    const content = /content\s*=\s*["']([^"']+)["']/i.exec(tag)?.[1];
+    if (key && content && wanted.includes(key) && !found[key]) found[key] = content.replace(/&amp;/g, '&').trim();
+  }
+  for (const key of wanted) {
+    if (!found[key]) continue;
+    try {
+      const abs = new URL(found[key], pageUrl).toString();
+      if (isHttpUrl(abs) && !isTrackingPixel(abs)) return abs;
+    } catch { /* ignore bad URL */ }
+  }
+  return null;
 }
 
 /** Dedupe by URL and normalized title, sort newest first, cap the list. */

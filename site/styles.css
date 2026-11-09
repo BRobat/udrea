@@ -139,6 +139,7 @@ a { color: inherit; }
   color: #3d220c;
   width: fit-content;
 }
+.badge[hidden] { display: none; }
 
 /* ---------- Tablet banner ---------- */
 .tablet-banner {
@@ -318,4 +319,146 @@ h1 {
   .tablet-banner { flex-direction: column; align-items: flex-start; padding: 12px 44px 12px 12px; }
   .grid { grid-template-columns: 1fr; }
   h1 { font-size: 1.3rem; }
+}
+
+/* ---------- Cursor: pixel-art copper ingot ---------- */
+html { cursor: url("assets/cursor.png") 2 2, auto; }
+a, button, .chip, summary, [role="button"] { cursor: url("assets/cursor-hover.png") 2 2, pointer; }
+input, textarea { cursor: text; }
+
+/* ---------- Copper ingot decorations ---------- */
+/* Faint repeating oxhide-ingot pattern behind everything. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: .07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M14 18 Q30 24 46 18 Q41 31 46 44 Q30 38 14 44 Q19 31 14 18Z' fill='%23b87333'/%3E%3Cpath d='M74 76 Q90 82 106 76 Q101 89 106 102 Q90 96 74 102 Q79 89 74 76Z' fill='%237c4a1e'/%3E%3C/svg%3E");
+  background-size: 120px 120px;
+}
+@media (prefers-color-scheme: dark) { body::before { opacity: .09; } }
+
+/* Ingot piles in the side margins, only where there is room for them. */
+.ingot-decor { display: none; }
+@media (min-width: 1360px) {
+  .ingot-decor {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .container, .tablet-banner, .footer { position: relative; z-index: 1; }
+}
+.side {
+  position: absolute;
+  top: 90px;
+  bottom: 0;
+  width: calc((100vw - 1200px) / 2);
+}
+.side-left { left: 0; }
+.side-right { right: 0; transform: scaleX(-1); }
+
+.stack {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  filter: drop-shadow(0 6px 8px rgba(61, 34, 12, .35));
+}
+.row { display: flex; gap: 3px; margin-top: -2px; }
+.bar {
+  position: relative;
+  width: 58px;
+  height: 22px;
+  clip-path: polygon(13% 0, 87% 0, 100% 100%, 0 100%);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0) 30%, rgba(255, 240, 225, .55) 45%, rgba(255, 255, 255, 0) 60%),
+    linear-gradient(180deg, #f6c8a2 0%, #e09a6a 22%, #b87333 55%, #7c4a1e 100%);
+}
+.bar::after {
+  /* stamped merchant's mark */
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  width: 12px;
+  height: 7px;
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(42, 22, 8, .55);
+}
+
+.oxhide {
+  position: absolute;
+  width: 80px;
+  height: 56px;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cpath d='M2 3 Q50 16 98 3 Q88 35 98 67 Q50 54 2 67 Q12 35 2 3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cpath d='M2 3 Q50 16 98 3 Q88 35 98 67 Q50 54 2 67 Q12 35 2 3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background:
+    radial-gradient(ellipse at 35% 30%, rgba(255, 236, 218, .75), transparent 45%),
+    linear-gradient(135deg, #e7a274, #b87333 50%, #6a3c17);
+  opacity: .8;
+  animation: bob 9s ease-in-out infinite;
+}
+.oxhide.o1 { top: 8%; left: 22%; transform: rotate(-14deg); }
+.oxhide.o2 { top: 34%; left: 52%; width: 56px; height: 40px; opacity: .55; animation-delay: -3s; }
+.oxhide.o3 {
+  top: 58%; left: 18%; width: 64px; height: 45px; opacity: .65; animation-delay: -6s;
+  /* oxidised one, gone green */
+  background:
+    radial-gradient(ellipse at 35% 30%, rgba(220, 255, 250, .5), transparent 45%),
+    linear-gradient(135deg, #6fd0c9, #43b3ae 50%, #2e7d6b);
+}
+@keyframes bob {
+  0%, 100% { translate: 0 0; rotate: -6deg; }
+  50% { translate: 0 -12px; rotate: 6deg; }
+}
+@media (prefers-reduced-motion: reduce) { .oxhide { animation: none; } }
+
+/* ---------- Generated art for articles without a picture ---------- */
+.card-art {
+  position: relative;
+  aspect-ratio: 16 / 6;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  padding: 10px 14px;
+  color: #fff7f0;
+  background:
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, .05) 0 2px, transparent 2px 6px),
+    linear-gradient(135deg, var(--a1), var(--a2) 55%, var(--a3));
+}
+.card-art.v0 { --a1: #f3b58c; --a2: #b87333; --a3: #5e3412; }
+.card-art.v1 { --a1: #8fdcd6; --a2: #43b3ae; --a3: #1f5f57; }
+.card-art.v2 { --a1: #e7a274; --a2: #8d5426; --a3: #3d220c; }
+.card-art.v3 { --a1: #f6c8a2; --a2: #c97c5d; --a3: #7a3b2e; }
+.card-art .art-ingot {
+  position: absolute;
+  right: 7%;
+  top: 50%;
+  width: 26%;
+  aspect-ratio: 100 / 70;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cpath d='M2 3 Q50 16 98 3 Q88 35 98 67 Q50 54 2 67 Q12 35 2 3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cpath d='M2 3 Q50 16 98 3 Q88 35 98 67 Q50 54 2 67 Q12 35 2 3Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  background:
+    radial-gradient(ellipse at 35% 30%, rgba(255, 255, 255, .6), transparent 45%),
+    linear-gradient(135deg, rgba(255, 255, 255, .35), rgba(0, 0, 0, .25));
+  transform: translateY(-50%) rotate(var(--rot, -10deg));
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .3));
+}
+.card-art .art-source {
+  position: relative;
+  font-family: Cinzel, Georgia, serif;
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: .06em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, .35), 0 2px 8px rgba(0, 0, 0, .3);
+  max-width: 60%;
+  line-height: 1.15;
 }

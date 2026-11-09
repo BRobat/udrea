@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import Parser from 'rss-parser';
 import {
-  isCopperRelated, canonicalSource, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
+  isCopperRelated, canonicalSource, extractItemImage, extractOgImage, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
 } from '../scripts/lib.mjs';
 
 test('isCopperRelated', () => {
@@ -83,4 +83,22 @@ test('canonicalSource and unifySourceSpellings merge publisher variants', () => 
   assert.equal(canonicalSource(' Kitco '), 'Kitco');
   const out = unifySourceSpellings([{ source: 'Foo News' }, { source: 'FOO NEWS' }, { source: 'Foo News' }]);
   assert.deepEqual(out.map((a) => a.source), ['Foo News', 'Foo News', 'Foo News']);
+});
+
+test('extractItemImage finds media, enclosure and inline images', () => {
+  assert.equal(extractItemImage({ enclosure: { url: 'https://x/e.jpg', type: 'image/jpeg' } }), 'https://x/e.jpg');
+  assert.equal(extractItemImage({ 'media:content': [{ $: { url: 'https://x/m.jpg', medium: 'image' } }] }), 'https://x/m.jpg');
+  assert.equal(
+    extractItemImage({ 'content:encoded': '<p><img src="https://feeds.feedburner.com/~r/pixel.gif"><img src="https://x/c.jpg?a=1&amp;b=2"></p>' }),
+    'https://x/c.jpg?a=1&b=2', // tracking pixel skipped
+  );
+  assert.equal(extractItemImage({ content: '<img class="wp" src="https://x/c.jpg?a=1&amp;b=2">' }), 'https://x/c.jpg?a=1&b=2');
+  assert.equal(extractItemImage({ title: 'none' }), null);
+});
+
+test('extractOgImage reads og/twitter tags and resolves relative URLs', () => {
+  const html = '<head><meta name="twitter:image" content="https://cdn/t.jpg"><meta content="/img/og.png" property="og:image"></head>';
+  assert.equal(extractOgImage(html, 'https://site.com/news/a'), 'https://site.com/img/og.png');
+  assert.equal(extractOgImage('<meta name="twitter:image" content="https://cdn/t.jpg">', 'https://s.com'), 'https://cdn/t.jpg');
+  assert.equal(extractOgImage('<html></html>', 'https://s.com'), null);
 });
