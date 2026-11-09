@@ -1,0 +1,63 @@
+{
+  "generatedAt": "2026-11-09T22:39:58.187Z",
+  "sample": true,
+  "count": 6,
+  "sources": [
+    "Google News",
+    "Investing News Network",
+    "MINING.COM",
+    "Mining Weekly",
+    "Reuters",
+    "The Northern Miner"
+  ],
+  "articles": [
+    {
+      "title": "Sample card: live copper headlines from MINING.COM appear here after the first data update",
+      "link": "https://www.mining.com/commodity/copper/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T22:39:58.188Z",
+      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "image": null
+    },
+    {
+      "title": "Sample card: live copper headlines from Reuters appear here after the first data update",
+      "link": "https://www.reuters.com/markets/commodities/",
+      "source": "Reuters",
+      "published": "2026-11-09T21:39:58.188Z",
+      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "image": null
+    },
+    {
+      "title": "Sample card: live copper headlines from The Northern Miner appear here after the first data update",
+      "link": "https://www.northernminer.com/",
+      "source": "The Northern Miner",
+      "published": "2026-11-09T20:39:58.188Z",
+      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "image": null
+    },
+    {
+      "title": "Sample card: live copper headlines from Mining Weekly appear here after the first data update",
+      "link": "https://www.miningweekly.com/",
+      "source": "Mining Weekly",
+      "published": "2026-11-09T19:39:58.188Z",
+      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "image": null
+    },
+    {
+      "title": "Sample card: live copper headlines from Investing News Network appear here after the first data update",
+      "link": "https://investingnews.com/category/daily/resource-investing/base-metals-investing/copper-investing/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T18:39:58.188Z",
+      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "image": null
+    },
+    {
+      "title": "Sample card: live copper headlines from Google News appear here after the first data update",
+      "link": "https://news.google.com/search?q=copper",
+      "source": "Google News",
+      "published": "2026-11-09T17:39:58.188Z",
+      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "image": null
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ea-nasir's Copper Gazette</title>
+  <meta name="description" content="The latest copper news from around the world, plus live-ish COMEX copper prices. Quality copper, guaranteed.">
+  <meta name="theme-color" content="#7c4a1e">
+  <link rel="icon" id="favicon" href="assets/ea-nasir-placeholder.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="./" aria-label="Ea-nasir's Copper Gazette, home">
+        <span class="logo-ring">
+          <img id="logo" class="logo" src="assets/ea-nasir.png" alt="Ea-nasir" width="56" height="56">
+        </span>
+        <span class="brand-text">
+          <span class="brand-title">Ea-nasir's</span>
+          <span class="brand-sub">Copper Gazette</span>
+        </span>
+      </a>
+
+      <div class="ticker" id="ticker" aria-live="polite">
+        <div class="tick tick-main">
+          <span class="tick-label">COMEX Cu <abbr title="Copper futures, front month (HG=F)">HG</abbr></span>
+          <span class="tick-value" id="p-comex">—</span>
+          <span class="tick-change" id="p-change"></span>
+        </div>
+        <div class="tick">
+          <span class="tick-label">USD / t</span>
+          <span class="tick-value" id="p-usdt">—</span>
+        </div>
+        <div class="tick">
+          <span class="tick-label">EUR / t</span>
+          <span class="tick-value" id="p-eurt">—</span>
+        </div>
+        <div class="tick tick-meta">
+          <span id="p-updated">loading…</span>
+          <span id="p-badge" class="badge" hidden></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="tablet-banner" id="tablet-banner">
+    <figure class="tablet-figure">
+      <img id="tablet-img" src="assets/nanni-tablet.jpg" alt="Nanni's complaint tablet to Ea-nasir, British Museum BM 131236" loading="lazy">
+      <div class="tablet-fallback" aria-hidden="true">▾◂ ▾▾ ◂▾ ▾◂◂ ▾ ◂▾▾ ▾◂ ▾▾◂ ◂ ▾▾ ◂▾◂ ▾ ▾◂▾ ◂▾ ▾▾</div>
+    </figure>
+    <blockquote>
+      <p>“What do you take me for, that you treat somebody like me with such contempt? … I have not received the copper ingots of good quality.”</p>
+      <cite>Nanni to Ea-nasir, Ur, c.&nbsp;1750&nbsp;BC. The world's oldest customer complaint.</cite>
+    </blockquote>
+    <button class="dismiss" id="dismiss-banner" aria-label="Dismiss banner">×</button>
+  </section>
+
+  <main class="container">
+    <div class="toolbar">
+      <h1>Latest copper news</h1>
+      <div class="controls">
+        <input type="search" id="search" placeholder="Search headlines…" aria-label="Search headlines">
+      </div>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Filter by source"></div>
+    <p class="meta-line" id="news-meta"></p>
+
+    <div class="grid" id="news" aria-busy="true">
+      <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+      <div class="skeleton"></div><div class="skeleton"></div><div class="skeleton"></div>
+    </div>
+
+    <div class="empty" id="empty" hidden>
+      <img src="assets/nanni-tablet.jpg" alt="" class="empty-tablet" onerror="this.remove()">
+      <h2 id="empty-title">No news delivered.</h2>
+      <p id="empty-text">Nanni is writing a complaint.</p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p class="tagline">Quality copper, guaranteed. Complaints to Nanni.</p>
+    <p>Headlines link to their original publishers. Ea-nasir's Copper Gazette only collects them from public RSS feeds.
+       Prices: COMEX copper futures (HG=F) via Yahoo Finance, FX via Frankfurter (ECB). They are delayed and for information only.</p>
+    <p class="credits">Logo: the meme face of Ea-nasir, as used by ea-nasir-shop.com. Complaint tablet: British Museum, BM&nbsp;131236 (UET V 81).</p>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>

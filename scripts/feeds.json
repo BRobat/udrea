@@ -1,0 +1,11 @@
+[
+  { "name": "Google News: copper price", "source": null, "url": "https://news.google.com/rss/search?q=%22copper+price%22+when:7d&hl=en-US&gl=US&ceid=US:en", "copperOnly": true },
+  { "name": "Google News: copper mining", "source": null, "url": "https://news.google.com/rss/search?q=copper+mining+when:7d&hl=en-US&gl=US&ceid=US:en", "copperOnly": true },
+  { "name": "Google News: LME copper", "source": null, "url": "https://news.google.com/rss/search?q=LME+copper+when:7d&hl=en-US&gl=US&ceid=US:en", "copperOnly": true },
+  { "name": "Google News: Reuters copper", "source": "Reuters", "url": "https://news.google.com/rss/search?q=copper+site:reuters.com+when:14d&hl=en-US&gl=US&ceid=US:en", "copperOnly": true },
+  { "name": "MINING.COM copper", "source": "MINING.COM", "url": "https://www.mining.com/commodity/copper/feed/", "copperOnly": true },
+  { "name": "MINING.COM", "source": "MINING.COM", "url": "https://www.mining.com/feed/", "copperOnly": false },
+  { "name": "The Northern Miner", "source": "The Northern Miner", "url": "https://www.northernminer.com/feed/", "copperOnly": false },
+  { "name": "Mining Weekly", "source": "Mining Weekly", "url": "https://www.miningweekly.com/page/copper/feed", "copperOnly": true },
+  { "name": "Investing News: copper", "source": "Investing News Network", "url": "https://investingnews.com/category/daily/resource-investing/base-metals-investing/copper-investing/feed/", "copperOnly": true }
+]
