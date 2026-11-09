@@ -140,10 +140,16 @@
   // Copper-plate artwork for stories whose feed has no picture.
   function art(a) {
     const h = hash(a.link || a.title || '');
-    const node = el('div', { class: `card-art v${h % 4}`, 'aria-hidden': 'true' },
+    const node = el('div', { class: `card-art v${h % 6} p${(h >>> 4) % 3}`, 'aria-hidden': 'true' },
       el('span', { class: 'art-ingot' }),
+      el('span', { class: 'art-ingot art-ingot-2' }),
       el('span', { class: 'art-source' }, a.source || 'Copper'));
-    node.style.setProperty('--rot', `${(h >> 3) % 40 - 20}deg`);
+    node.style.setProperty('--rot', `${(h >>> 3) % 40 - 20}deg`);
+    node.style.setProperty('--rot2', `${(h >>> 9) % 50 - 25}deg`);
+    node.style.setProperty('--size', `${18 + ((h >>> 12) % 14)}%`);
+    node.style.setProperty('--x', `${4 + ((h >>> 16) % 14)}%`);
+    node.style.setProperty('--y', `${35 + ((h >>> 20) % 30)}%`);
+    if ((h >>> 24) % 3 === 0) node.classList.add('two');
     return node;
   }
 

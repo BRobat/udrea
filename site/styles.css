@@ -430,19 +430,26 @@ body::before {
   align-items: flex-end;
   padding: 10px 14px;
   color: #fff7f0;
-  background:
-    repeating-linear-gradient(100deg, rgba(255, 255, 255, .05) 0 2px, transparent 2px 6px),
-    linear-gradient(135deg, var(--a1), var(--a2) 55%, var(--a3));
+  background: var(--pattern), linear-gradient(var(--angle, 135deg), var(--a1), var(--a2) 55%, var(--a3));
 }
-.card-art.v0 { --a1: #f3b58c; --a2: #b87333; --a3: #5e3412; }
-.card-art.v1 { --a1: #8fdcd6; --a2: #43b3ae; --a3: #1f5f57; }
-.card-art.v2 { --a1: #e7a274; --a2: #8d5426; --a3: #3d220c; }
-.card-art.v3 { --a1: #f6c8a2; --a2: #c97c5d; --a3: #7a3b2e; }
+/* palettes */
+.card-art.v0 { --a1: #f3b58c; --a2: #b87333; --a3: #5e3412; --angle: 135deg; }
+.card-art.v1 { --a1: #8fdcd6; --a2: #43b3ae; --a3: #1f5f57; --angle: 160deg; }
+.card-art.v2 { --a1: #e7a274; --a2: #8d5426; --a3: #3d220c; --angle: 110deg; }
+.card-art.v3 { --a1: #f6c8a2; --a2: #c97c5d; --a3: #7a3b2e; --angle: 200deg; }
+.card-art.v4 { --a1: #d9b98f; --a2: #a87d50; --a3: #4a2f18; --angle: 145deg; } /* clay */
+.card-art.v5 { --a1: #ffcf9e; --a2: #d9773a; --a3: #8a2f12; --angle: 120deg; } /* molten */
+/* surface patterns */
+.card-art.p0 { --pattern: repeating-linear-gradient(100deg, rgba(255, 255, 255, .06) 0 2px, transparent 2px 6px); } /* brushed */
+.card-art.p1 { --pattern: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, .16) 0 3px, rgba(0, 0, 0, .1) 4px, transparent 7px) 0 0 / 22px 22px; } /* hammered */
+.card-art.p2 { /* cuneiform-like wedge marks */
+  --pattern: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='30' viewBox='0 0 48 30'%3E%3Cg fill='%23000' fill-opacity='.14'%3E%3Cpath d='M3 4l8 3-8 3z'/%3E%3Cpath d='M18 3l3 9 3-9z'/%3E%3Cpath d='M30 18l8 3-8 3z'/%3E%3Cpath d='M8 18l3 9 3-9z'/%3E%3Cpath d='M40 4l3 9 3-9z'/%3E%3C/g%3E%3C/svg%3E") 0 0 / 48px 30px;
+}
 .card-art .art-ingot {
   position: absolute;
-  right: 7%;
-  top: 50%;
-  width: 26%;
+  right: var(--x, 7%);
+  top: var(--y, 50%);
+  width: var(--size, 26%);
   aspect-ratio: 100 / 70;
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cpath d='M2 3 Q50 16 98 3 Q88 35 98 67 Q50 54 2 67 Q12 35 2 3Z'/%3E%3C/svg%3E") center / contain no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 70'%3E%3Cpath d='M2 3 Q50 16 98 3 Q88 35 98 67 Q50 54 2 67 Q12 35 2 3Z'/%3E%3C/svg%3E") center / contain no-repeat;
@@ -451,6 +458,15 @@ body::before {
     linear-gradient(135deg, rgba(255, 255, 255, .35), rgba(0, 0, 0, .25));
   transform: translateY(-50%) rotate(var(--rot, -10deg));
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .3));
+}
+.card-art .art-ingot-2 { display: none; }
+.card-art.two .art-ingot-2 {
+  display: block;
+  right: calc(var(--x, 7%) + var(--size, 26%) * .7);
+  top: calc(var(--y, 50%) - 12%);
+  width: calc(var(--size, 26%) * .6);
+  opacity: .75;
+  transform: translateY(-50%) rotate(var(--rot2, 15deg));
 }
 .card-art .art-source {
   position: relative;

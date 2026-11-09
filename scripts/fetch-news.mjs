@@ -3,7 +3,9 @@
 import Parser from 'rss-parser';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { readJson, writeJson, normalizeItem, mergeArticles, fetchWithTimeout, extractOgImage } from './lib.mjs';
+import {
+  readJson, writeJson, normalizeItem, mergeArticles, fetchWithTimeout, extractOgImage, decodeGoogleNewsUrl,
+} from './lib.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(root, 'site/data/news.json');
@@ -40,15 +42,53 @@ results.forEach((r, i) => {
 });
 console.log('Feeds:\n' + report.join('\n'));
 
-const articles = mergeArticles(all);
+let articles = mergeArticles(all, { limit: 120 });
 if (articles.length === 0) {
   // Keep whatever was there before rather than blanking the site.
   console.error('No articles fetched; leaving existing news.json untouched.');
   process.exit(0);
 }
 
-// ---------- Images: reuse previous lookups, then try og:image on the article page ----------
 const previous = await readJson(OUT, { articles: [] });
+
+// Run up to `n` async jobs from a list at a time.
+async function pool(items, n, job) {
+  const queue = [...items];
+  await Promise.all(Array.from({ length: n }, async () => {
+    for (let it = queue.shift(); it; it = queue.shift()) await job(it);
+  }));
+}
+
+// ---------- Google News links -> publisher URLs ----------
+const knownLinks = new Map(
+  (previous.articles || []).filter((a) => a.googleLink && a.link !== a.googleLink).map((a) => [a.googleLink, a.link]),
+);
+let decoded = 0;
+let decodeFailed = 0;
+await pool(articles.filter((a) => /news\.google\.com/.test(a.link)), 4, async (a) => {
+  const googleLink = a.link;
+  let real = knownLinks.get(googleLink);
+  if (!real) {
+    try {
+      real = await decodeGoogleNewsUrl(googleLink);
+    } catch {
+      real = null;
+    }
+  }
+  if (real) {
+    a.googleLink = googleLink;
+    a.link = real;
+    decoded++;
+  } else {
+    decodeFailed++;
+  }
+});
+console.log(`Google News links: ${decoded} resolved to publisher URLs, ${decodeFailed} left as Google links`);
+
+// The same story often arrives both via Google and directly; dedupe again on real URLs.
+articles = mergeArticles(articles);
+
+// ---------- Images: reuse previous lookups, then try og:image on the article page ----------
 const knownImages = new Map((previous.articles || []).filter((a) => a.image !== undefined).map((a) => [a.link, a.image]));
 
 async function pageImage(link) {
@@ -68,25 +108,20 @@ async function pageImage(link) {
   return extractOgImage(html, res.url || link);
 }
 
-// Google News links are opaque redirects, so only direct publisher links are looked up.
-const toLookUp = articles.filter((a) => !a.image && !/news\.google\.com/.test(a.link));
+// Unresolved Google News links can't be scanned, so only publisher links are looked up.
 let found = 0;
-const queue = [...toLookUp];
-async function worker() {
-  for (let a = queue.shift(); a; a = queue.shift()) {
-    if (knownImages.has(a.link)) {
-      a.image = knownImages.get(a.link);
-      continue;
-    }
-    try {
-      a.image = await pageImage(a.link);
-    } catch {
-      a.image = null;
-    }
-    if (a.image) found++;
+await pool(articles.filter((a) => !a.image && !/news\.google\.com/.test(a.link)), 6, async (a) => {
+  if (knownImages.has(a.link)) {
+    a.image = knownImages.get(a.link);
+    return;
   }
-}
-await Promise.all(Array.from({ length: 6 }, worker));
+  try {
+    a.image = await pageImage(a.link);
+  } catch {
+    a.image = null;
+  }
+  if (a.image) found++;
+});
 console.log(`Images: ${articles.filter((a) => a.image).length}/${articles.length} (${found} new from article pages)`);
 
 await writeJson(OUT, {
