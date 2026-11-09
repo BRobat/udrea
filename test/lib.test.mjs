@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import Parser from 'rss-parser';
 import {
-  isCopperRelated, canonicalSource, extractItemImage, extractOgImage, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
+  isCopperRelated, canonicalSource, isJunkTitle, googleArticleId, decodeOldStyleId,
+  parseGoogleSignature, parseBatchExecuteResponse, buildBatchExecuteBody, decodeGoogleNewsUrl, extractItemImage, extractOgImage, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
 } from '../scripts/lib.mjs';
 
 test('isCopperRelated', () => {
@@ -73,8 +74,13 @@ test('off-topic items are dropped even from copper searches', () => {
   const feed = { name: 'G', source: 'Reuters', url: 'https://news.google.com/rss/search?q=copper+site:reuters.com' };
   const item = { title: 'Democratic US senators see hope for permitting bill - Reuters', link: 'https://news.google.com/y', isoDate: '2026-11-09T00:00:00Z' };
   assert.equal(normalizeItem(item, feed), null);
-  const tagged = { title: 'Vale lifts outlook', link: 'https://x/v', isoDate: '2026-11-09T00:00:00Z', categories: [{ _: 'Copper' }] };
-  assert.ok(normalizeItem(tagged, { name: 'M', source: 'MINING.COM', url: 'https://www.mining.com/feed/' }));
+  // Copper only in tags or summary is not enough: the headline must be about copper.
+  const mfeed = { name: 'M', source: 'MINING.COM', url: 'https://www.mining.com/feed/' };
+  const tagged = { title: 'Vale lifts outlook', link: 'https://x/v', isoDate: '2026-11-09T00:00:00Z', categories: [{ _: 'Copper' }], contentSnippet: 'copper and nickel' };
+  assert.equal(normalizeItem(tagged, mfeed), null);
+  assert.equal(normalizeItem({ title: 'Barrick targets November filing for North American IPO', link: 'https://x/b', contentSnippet: 'gold and copper' }, mfeed), null);
+  assert.ok(normalizeItem({ title: 'Codelco output falls in October', link: 'https://x/c' }, mfeed));
+  assert.equal(normalizeItem({ title: '5255.JNX - | Stock Price & Latest News - Reuters', link: 'https://news.google.com/x' }, feed), null);
 });
 
 test('canonicalSource and unifySourceSpellings merge publisher variants', () => {
@@ -101,4 +107,53 @@ test('extractOgImage reads og/twitter tags and resolves relative URLs', () => {
   assert.equal(extractOgImage(html, 'https://site.com/news/a'), 'https://site.com/img/og.png');
   assert.equal(extractOgImage('<meta name="twitter:image" content="https://cdn/t.jpg">', 'https://s.com'), 'https://cdn/t.jpg');
   assert.equal(extractOgImage('<html></html>', 'https://s.com'), null);
+});
+
+test('isJunkTitle', () => {
+  assert.ok(isJunkTitle('5255.JNX - | Stock Price & Latest News'));
+  assert.ok(isJunkTitle('TEKFF.GTC -'));
+  assert.ok(!isJunkTitle('Copper - the metal of the future'));
+});
+
+test('Google News: article id and old-style ids', () => {
+  const url = 'https://www.mining.com/copper-hits-record/';
+  const proto = Buffer.concat([Buffer.from([0x08, 0x13, 0x22, url.length]), Buffer.from(url), Buffer.from([0xd2, 0x01, 0x00])]);
+  const id = proto.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+  const link = `https://news.google.com/rss/articles/${id}?oc=5`;
+  assert.equal(googleArticleId(link), id);
+  assert.equal(googleArticleId('https://example.com/rss/articles/abc'), null);
+  assert.equal(decodeOldStyleId(id), url);
+  const newStyle = Buffer.from([0x08, 0x13, 0x22, 0x10, ...Buffer.from('AU_yqLOpaqueToken')]).toString('base64');
+  assert.equal(decodeOldStyleId(newStyle), null);
+});
+
+const BATCH_RESPONSE = `)]}'
+
+189
+[["wrb.fr","Fbv4je","[\\"garturlres\\",\\"https://www.reuters.com/markets/commodities/copper-rallies-2026-11-09/\\",1]",null,null,null,"generic"],["di",42],["af.httprm",42,"123",7]]
+25
+[["e",4,null,null,229]]
+`;
+
+test('Google News: signature parsing and batchexecute response', () => {
+  const html = '<c-wiz><div jscontroller="x" data-n-a-sg="AZ5r3eSig" data-n-a-ts="1762700000" data-n-a-id="CBMiX"></div></c-wiz>';
+  assert.deepEqual(parseGoogleSignature(html), { signature: 'AZ5r3eSig', timestamp: '1762700000' });
+  assert.equal(parseGoogleSignature('<html></html>'), null);
+  assert.equal(parseBatchExecuteResponse(BATCH_RESPONSE), 'https://www.reuters.com/markets/commodities/copper-rallies-2026-11-09/');
+  assert.equal(parseBatchExecuteResponse(")]}'\n[]"), null);
+  const body = decodeURIComponent(buildBatchExecuteBody('CBMiX', { signature: 'S', timestamp: '17' }).slice(6));
+  const inner = JSON.parse(JSON.parse(body)[0][0][1]);
+  assert.deepEqual(inner.slice(2), ['CBMiX', 17, 'S']);
+});
+
+test('decodeGoogleNewsUrl drives the two requests', async () => {
+  const calls = [];
+  const fakeFetch = async (url, opts = {}) => {
+    calls.push([url, opts.method || 'GET']);
+    const text = url.includes('batchexecute') ? BATCH_RESPONSE : '<div data-n-a-sg="SIG" data-n-a-ts="1700"></div>';
+    return { text: async () => text };
+  };
+  const out = await decodeGoogleNewsUrl('https://news.google.com/rss/articles/CBMiOpaque?oc=5', fakeFetch);
+  assert.equal(out, 'https://www.reuters.com/markets/commodities/copper-rallies-2026-11-09/');
+  assert.deepEqual(calls.map((c) => c[1]), ['GET', 'POST']);
 });

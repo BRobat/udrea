@@ -106,10 +106,8 @@ export function normalizeItem(item, feed) {
   const rawSummary = isGoogle ? '' : (item.contentSnippet || item.summary || item.content || '');
   const summary = truncate(stripHtml(rawSummary));
 
-  // Every item must mention copper, even from copper-specific feeds and searches:
-  // Google News queries in particular return loosely related stories.
-  const categories = (item.categories || []).map((c) => (typeof c === 'string' ? c : c?._ || '')).join(' ');
-  if (!isCopperRelated(`${title} ${summary} ${categories}`)) {
+  // Only stories whose headline is about copper (or a copper-only producer or mine).
+  if (!isCopperRelated(title) || isJunkTitle(title)) {
     return null;
   }
 
@@ -137,6 +135,96 @@ export function unifySourceSpellings(articles) {
     best.set(key, [...byName].sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0]))[0][0]);
   }
   return articles.map((a) => (a && a.source ? { ...a, source: best.get(a.source.toLowerCase()) } : a));
+}
+
+/** Quote pages and other non-articles that search feeds return. */
+export function isJunkTitle(title) {
+  const t = String(title || '').trim();
+  return /stock price (&|and) latest news/i.test(t) || /^[A-Z0-9.^%:_-]+\s+-\s*(\||$)/.test(t);
+}
+
+// ---------- Google News link decoding ----------
+// Google News RSS links are opaque redirects (news.google.com/rss/articles/<id>) that often
+// stop on a consent page. These helpers turn them into the publisher's own URL.
+
+export function googleArticleId(url) {
+  try {
+    const u = new URL(url);
+    if (u.hostname !== 'news.google.com') return null;
+    const m = /\/(?:rss\/)?articles\/([^/?#]+)/.exec(u.pathname);
+    return m ? m[1] : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Older ids are base64 protobufs that contain the URL in plain text. */
+export function decodeOldStyleId(id) {
+  try {
+    const bytes = Buffer.from(id.replace(/-/g, '+').replace(/_/g, '/'), 'base64').toString('latin1');
+    const m = /https?:\/\/[\x21-\x7e]+/.exec(bytes);
+    if (!m) return null;
+    // Newer ids hold an opaque token ("AU_yqL…") instead and need the online lookup.
+    const url = m[0];
+    return isHttpUrl(url) && !/news\.google\.com/.test(url) ? url : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Signature and timestamp embedded in a news.google.com article page. */
+export function parseGoogleSignature(html) {
+  const sg = /data-n-a-sg="([^"]+)"/.exec(html || '')?.[1];
+  const ts = /data-n-a-ts="([^"]+)"/.exec(html || '')?.[1];
+  return sg && ts ? { signature: sg, timestamp: ts } : null;
+}
+
+export function buildBatchExecuteBody(id, { signature, timestamp }) {
+  const inner = JSON.stringify([
+    'garturlreq',
+    [['X', 'X', ['X', 'X'], null, null, 1, 1, 'US:en', null, 1, null, null, null, null, null, 0, 1], 'X', 'X', 1, [1, 1, 1], 1, 1, null, 0, 0, null, 0],
+    id,
+    Number(timestamp),
+    signature,
+  ]);
+  return 'f.req=' + encodeURIComponent(JSON.stringify([[['Fbv4je', inner, null, 'generic']]]));
+}
+
+/** Pull the article URL out of a batchexecute response. */
+export function parseBatchExecuteResponse(text) {
+  const body = String(text || '').replace(/^\)\]\}'\s*/, '');
+  // The response is a series of length-prefixed JSON chunks; find the one with our payload.
+  for (const line of body.split('\n')) {
+    if (!line.includes('garturlres')) continue;
+    try {
+      const outer = JSON.parse(line);
+      for (const entry of outer) {
+        if (entry && entry[0] === 'wrb.fr' && typeof entry[2] === 'string') {
+          const url = JSON.parse(entry[2])[1];
+          if (isHttpUrl(url)) return url;
+        }
+      }
+    } catch { /* try the next line */ }
+  }
+  return null;
+}
+
+/** Resolve a Google News link to the publisher URL, or null. */
+export async function decodeGoogleNewsUrl(url, fetchImpl = fetchWithTimeout) {
+  const id = googleArticleId(url);
+  if (!id) return null;
+  const direct = decodeOldStyleId(id);
+  if (direct) return direct;
+  const page = await fetchImpl(`https://news.google.com/articles/${id}`, { timeout: 10000 });
+  const sig = parseGoogleSignature(await page.text());
+  if (!sig) return null;
+  const res = await fetchImpl('https://news.google.com/_/DotsSplashUi/data/batchexecute', {
+    timeout: 10000,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+    body: buildBatchExecuteBody(id, sig),
+  });
+  return parseBatchExecuteResponse(await res.text());
 }
 
 /** Best image URL carried by an RSS item itself (enclosure, media tags, or first <img> in the content). */
