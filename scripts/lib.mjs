@@ -13,6 +13,26 @@ export function isCopperRelated(text) {
   return /\bcopper\b/i.test(t) || /\bCu\b/.test(t) || COPPER_NAMES_RE.test(t);
 }
 
+const COPPER_WORD_RE = /\bcopper\b|\bCu\b|\b(codelco|kghm|escondida|grasberg|kamoa|kakula|antofagasta|freeport[- ]mcmoran|cobre|oyu tolgoi|collahuasi|chuquicamata)\b/i;
+const OTHER_COMMODITY_RE = /\b(gold|silver|lithium|uranium|nickel|zinc|iron ore|coal|rare earths?|platinum|palladium|diamonds?|oil|gas|potash|graphite|vanadium|tungsten|antimony|tin)\b/i;
+const SPORTS_RE = /\b(volleyball|football|basketball|hockey|soccer|baseball|softball|wrestling|lacrosse|playoffs?|tournament|varsity|district title|state title|homecoming|copper kings|coppermen|copperheads)\b/i;
+
+/**
+ * Strict headline test: copper must be what the story is about.
+ * - the headline mentions copper (or a copper-only producer or mine),
+ * - no other commodity is named before copper ("Northstar Gold … copper" is a gold story),
+ * - it isn't a sports story about a team named after copper.
+ */
+export function isCopperHeadline(title, link = '') {
+  const t = String(title || '');
+  const copper = COPPER_WORD_RE.exec(t);
+  if (!copper) return false;
+  const other = OTHER_COMMODITY_RE.exec(t);
+  if (other && other.index < copper.index) return false;
+  if (SPORTS_RE.test(t) || /\/sports?\//i.test(link)) return false;
+  return true;
+}
+
 export function stripHtml(html) {
   return String(html || '')
     .replace(/<script[\s\S]*?<\/script>/gi, ' ')
@@ -107,7 +127,7 @@ export function normalizeItem(item, feed) {
   const summary = truncate(stripHtml(rawSummary));
 
   // Only stories whose headline is about copper (or a copper-only producer or mine).
-  if (!isCopperRelated(title) || isJunkTitle(title)) {
+  if (!isCopperHeadline(title, item.link) || isJunkTitle(title)) {
     return null;
   }
 
