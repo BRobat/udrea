@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+<channel><title>Mining</title>
+<item><title>Copper hits record on supply fears</title><link>https://example.com/a?utm_source=x</link>
+<pubDate>Mon, 09 Nov 2026 10:00:00 GMT</pubDate><description>&lt;p&gt;Copper &amp;amp; zinc rallied.&lt;/p&gt;</description>
+<media:content url="https://example.com/a.jpg" medium="image"/></item>
+<item><title>Gold miners merge</title><link>https://example.com/b</link><pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate><description>Nothing red here.</description></item>
+<item><title>Bad link</title><link>javascript:alert(1)</link><pubDate>Mon, 09 Nov 2026 09:00:00 GMT</pubDate></item>
+</channel></rss>

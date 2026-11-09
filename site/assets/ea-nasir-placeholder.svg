@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Ea-nasir">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="65%">
+      <stop offset="0" stop-color="#f3b58c"/><stop offset=".55" stop-color="#b87333"/><stop offset="1" stop-color="#5e3412"/>
+    </radialGradient>
+    <linearGradient id="skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6c8a2"/><stop offset="1" stop-color="#d58c5c"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3a2210"/><stop offset="1" stop-color="#1e1007"/>
+    </linearGradient>
+  </defs>
+  <circle cx="64" cy="64" r="62" fill="url(#bg)" stroke="#43b3ae" stroke-width="4"/>
+  <!-- cap -->
+  <path d="M34 50 Q36 18 64 16 Q92 18 94 50 Z" fill="#7c4a1e" stroke="#2a1608" stroke-width="2"/>
+  <path d="M33 50 H95" stroke="#e7a274" stroke-width="5" stroke-linecap="round"/>
+  <!-- face -->
+  <path d="M38 52 Q38 86 64 90 Q90 86 90 52 Z" fill="url(#skin)" stroke="#2a1608" stroke-width="2"/>
+  <!-- eyebrows (unibrow, grumpy) -->
+  <path d="M43 58 Q53 52 63 59 M65 59 Q75 52 85 58" fill="none" stroke="#1e1007" stroke-width="4" stroke-linecap="round"/>
+  <!-- eyes -->
+  <path d="M46 64 Q53 60 60 64 Q53 67 46 64 Z M68 64 Q75 60 82 64 Q75 67 68 64 Z" fill="#fff" stroke="#1e1007" stroke-width="1.5"/>
+  <circle cx="54" cy="64" r="2.4" fill="#1e1007"/><circle cx="74" cy="64" r="2.4" fill="#1e1007"/>
+  <!-- nose -->
+  <path d="M64 62 Q60 74 58 77 Q64 80 70 77" fill="none" stroke="#7c4a1e" stroke-width="2" stroke-linecap="round"/>
+  <!-- beard: stacked ringlets -->
+  <path d="M38 70 Q40 96 50 110 Q64 120 78 110 Q88 96 90 70 Q84 84 64 84 Q44 84 38 70 Z" fill="url(#hair)" stroke="#120904" stroke-width="2"/>
+  <g fill="none" stroke="#6b4425" stroke-width="2" stroke-linecap="round">
+    <path d="M46 90 q3 3 6 0 q3 3 6 0 q3 3 6 0 q3 3 6 0 q3 3 6 0 q3 3 6 0"/>
+    <path d="M48 98 q3 3 6 0 q3 3 6 0 q3 3 6 0 q3 3 6 0 q3 3 6 0"/>
+    <path d="M52 106 q3 3 6 0 q3 3 6 0 q3 3 6 0 q3 3 6 0"/>
+  </g>
+  <!-- mustache + mouth -->
+  <path d="M52 82 Q58 78 64 81 Q70 78 76 82" fill="none" stroke="#1e1007" stroke-width="4" stroke-linecap="round"/>
+  <!-- copper ingot -->
+  <path d="M96 92 l18 -4 l4 8 l-18 4 z" fill="#da8a67" stroke="#2a1608" stroke-width="1.5"/>
+</svg>
