@@ -1,62 +1,520 @@
 {
-  "generatedAt": "2026-11-09T22:39:58.187Z",
-  "sample": true,
-  "count": 6,
+  "generatedAt": "2026-11-09T22:57:19.365Z",
+  "count": 60,
   "sources": [
-    "Google News",
+    "African Mining Market",
+    "Business Recorder",
+    "Daily Forex",
+    "EUWID Recycling and Waste Management",
+    "Economies.com",
+    "FXEmpire",
+    "Finimize",
+    "Fuel Cells Works",
+    "Global Mining Review",
+    "Herald.co.zw",
+    "IndexBox",
+    "Industry Queensland",
     "Investing News Network",
+    "Junior Mining Network",
     "MINING.COM",
     "Mining Weekly",
+    "Mining.com",
+    "Mining.com.au",
+    "Proactive financial news",
     "Reuters",
-    "The Northern Miner"
+    "Shanghai Metals Market",
+    "TMX Newsfile",
+    "The Economic Times",
+    "The Globe and Mail",
+    "The Mining Gazette",
+    "The Northern Miner",
+    "The West Australian",
+    "TradingView",
+    "Tucson Sentinel",
+    "Views Bangladesh",
+    "ad-hoc-news.de",
+    "kalkine.ca",
+    "www.marketscreener.com"
   ],
   "articles": [
     {
-      "title": "Sample card: live copper headlines from MINING.COM appear here after the first data update",
-      "link": "https://www.mining.com/commodity/copper/",
-      "source": "MINING.COM",
-      "published": "2026-11-09T22:39:58.188Z",
-      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
-      "image": null
-    },
-    {
-      "title": "Sample card: live copper headlines from Reuters appear here after the first data update",
-      "link": "https://www.reuters.com/markets/commodities/",
-      "source": "Reuters",
-      "published": "2026-11-09T21:39:58.188Z",
-      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
-      "image": null
-    },
-    {
-      "title": "Sample card: live copper headlines from The Northern Miner appear here after the first data update",
-      "link": "https://www.northernminer.com/",
+      "title": "Barrick targets November filing for North American IPO",
+      "link": "https://www.northernminer.com/news/barrick-targets-november-filing-for-north-american-ipo/1003897540/",
       "source": "The Northern Miner",
-      "published": "2026-11-09T20:39:58.188Z",
-      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "published": "2026-11-09T22:20:51.000Z",
+      "summary": "Barrick Mining (TSX: ABX; NYSE: B) said it plans to file for an initial public offering of its North American gold business this month as... The post Barrick targets November filing for North American IPO appeared first on The Northern Miner.",
       "image": null
     },
     {
-      "title": "Sample card: live copper headlines from Mining Weekly appear here after the first data update",
-      "link": "https://www.miningweekly.com/",
+      "title": "Democratic US senators see hope for permitting bill ahead of key Senate vote",
+      "link": "https://news.google.com/rss/articles/CBMivwFBVV95cUxPRlk4Zm1Ba0RjZlZ5d010c2dKOGtJNWJheHhrNHBPbGRuNzdlOVRMSHZQRkxhSW5DaWJJT28wSEg1SjJkXzdBOGxoYm1pWWxDS18xdjNPZ2ctMFdYX0szaEkzTHlvbDhDT3VXWGYxSklCbU5CUmxfOGtTbm9XVHg2QWg5ZHBWXzhQZmhJeVJmWjFJQVFBVF9yeGxGOHRZczBwM0ZKZ0tWaFRDbWUycy1iTG8zZEUzTWY5Wi1BMklDcw?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T22:16:47.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Vale Base Metals to triple earnings to $5B for 2026, CEO says",
+      "link": "https://www.mining.com/vale-base-metals-to-triple-earnings-to-5b-for-2026-ceo-says/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T21:56:00.000Z",
+      "summary": "VBM produced 382,300 tonnes of copper and 177,200 tonnes of nickel in 2025, increases of 10% and 11%, respectively.",
+      "image": null
+    },
+    {
+      "title": "Codelco, Pucobre win permit for $870M copper project",
+      "link": "https://www.northernminer.com/news/codelco-pucobre-win-permit-for-870m-copper-project/1003897549/",
+      "source": "The Northern Miner",
+      "published": "2026-11-09T21:45:00.000Z",
+      "summary": "Chile’s state-owned Codelco and Pucobre (Santiago: PUCOBRE) won environmental approval on Oct. 23 for their $870-million (C$1.23 billion) Tovaku copper project, advancing a partnership that... The post Codelco, Pucobre win permit for $870M copper project…",
+      "image": null
+    },
+    {
+      "title": "Copper price rebounds on firmer risk sentiment and tight supply in China",
+      "link": "https://news.google.com/rss/articles/CBMimwFBVV95cUxOYnpMSkdaUE5TNHo0UC15d0lQNzZJV3hqODBZUFEwMVZTRGNNbUpSNTBDbHNtbkxKQWhOSDlkQkNVRkpGQm9pOEwtVDc5ZjN5T2lyZkk5X29BZTlESFFZOEdzSU9ac3Q5aEJPdjE4Z0RoQldScTVyeGcwUXhyZUtlVlI3TTRReXhOajliRElUR055d1F1dmc3cy1yZw?oc=5",
+      "source": "Mining.com.au",
+      "published": "2026-11-09T20:48:45.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Federal judge refuses to halt construction at South32 copper mine near Tucson",
+      "link": "https://news.google.com/rss/articles/CBMi2gFBVV95cUxPbGxzRGZReVluYWFQaEtiSU1RWTVDaG1kWDNWS2JDMVVTc2xpZ0tEaE5VTUdJWldDeno4cVNMRXMycjFEQXF2b1lLZUtyc1RycnFvTEhTczZDWFlkOVhTNjQwM3ZSel9qX2FLTjh3cm4tYWc0NmRNRnlpVkpubWdndjdjVjk1dUI1YnZPaHdsWTRUdWdveGVLSWx5ejVubkpmZE5hZFdmQk5vUHd1WXdsTzMxQW1jdTU1SlhCQVp2ZkpLdWlNMGJ0ZUs5X0h0SG5KMWhLNXFhV3owQQ?oc=5",
+      "source": "Tucson Sentinel",
+      "published": "2026-11-09T19:55:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Montero Mining Licenses BHP Historical Drilling Data for Avispa Copper-Molybdenum Project in Chile",
+      "link": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxPUHpqNkJKbXJQbGJIRWpUQXVua3VlVVh2RF9vQUE2V0hGcXFxVEFZTHJscnhpNktfcnhaN1FoQktJOG9rZzlfUDdfcWE0dDhmX3hyOUtScnN0OVpiR3I2UHhhYzZ5T3FiN19FQmZacC10UEVWdlFzaVA3QUJaaEg2ZWRsRTBMZ3NjNWh1SWE3S0RwaHdYR3hES0lHU0xFSFpabkRZQ090aGRrVktvODZ1UjhOY0JwWXc4NzFiN3pmZDdpclFZQ2ZvbmR1LUVuMkRxbXc?oc=5",
+      "source": "kalkine.ca",
+      "published": "2026-11-09T19:40:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Copper price bounces after worst week since March amid scramble for metal in China",
+      "link": "https://www.mining.com/copper-price-bounces-after-worst-week-since-march-amid-scramble-for-metal-in-china/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T19:39:48.000Z",
+      "summary": "The Yangshan premium for copper shipped into China climbed to a record $230 a tonne on Monday, spot premiums in Shanghai have tripled in two weeks, and deliverable stocks on the SHFE would cover less than a day of Chinese consumption.",
+      "image": null
+    },
+    {
+      "title": "Impossible Metals says it has successfully tested AI seabed mining robot",
+      "link": "https://www.mining.com/web/impossible-metals-says-it-has-successfully-tested-ai-seabed-mining-robot/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T19:15:29.000Z",
+      "summary": "Impossible Metals developed a robot with a large claw that it says uses AI to avoid aquatic life and reduce environmental impacts.",
+      "image": null
+    },
+    {
+      "title": "US Congress gets first post-'Blue Wave' crack at data centers with permitting bill",
+      "link": "https://news.google.com/rss/articles/CBMiygFBVV95cUxPUVhSV24tejNOTWRUTlhYX2NjeVZDUng5dzBSNGZWR3VkODRZUkdyT1hFbU53WEgxQnZBcC15YXVGUFNJWmkxRTdkVEltakQzSlU5clN0c2U2bjZHZ3ZlZ0I2dmFoRjZMOUdmVmNRQWtPdlBqMUJHejlrSjB0U1pWVGdabmJ4UUlPVVZuZ2JCYktiOXhWX2FlUS1jUjc4UHZxYXRISDl4OXA4eF80UVF6Mm1xU2FCQWpKdVZuOFk3c0Z0Q3RrZm9xOTVn?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T19:09:56.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "The Metals Company expects final US permit decision by mid-December",
+      "link": "https://www.mining.com/web/the-metals-company-expects-final-us-permit-decision-by-mid-december/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T18:46:21.000Z",
+      "summary": "The company is seeking a license and permit to mine deep-sea minerals in international waters.",
+      "image": null
+    },
+    {
+      "title": "Trump administration's embrace of \"perp\" futures sets off risk alarms for Wall Street stalwarts",
+      "link": "https://news.google.com/rss/articles/CBMixwFBVV95cUxNYVZsYWtjTnU4dVhYU3o4LWJCeVdPOUNhNGdUVUhLdG1iZTE3REw3QmR6RHRzblFjc3RKYmlvS1JkRlFJakFpMExqdGx2ZDU1OGcxME5OazNFVTVGYTRQLTlSTjFhTk5Wc041TnV5dUtRdGdWWVQwWXRhMzdMaE9sdmdWOFROSGVoOTR1Z201THNOb25PTmdzWkdraGNkWEg2bFljcld6SDM0MzJvdG84amJkNGRBYjJyMDRCemVFMVhUMzZvcTZR?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T17:23:42.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Meridian weighs $400 million investment decision for Cabaçal mine",
+      "link": "https://www.mining.com/meridian-weighs-400-million-investment-decision-for-cabacal-mine/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T16:12:12.000Z",
+      "summary": "Meridian’s copper-gold mine in Brazil has received more than twenty financing proposals.",
+      "image": null
+    },
+    {
+      "title": "Codelco, Pucobre clear key hurdle for $870 million copper mine",
+      "link": "https://news.google.com/rss/articles/CBMijAFBVV95cUxNMU5JUjRqaF9yemtSRnFPZkM1c3VvOUlIdFBHcF9fZVRkTWlEd2JtRktxOWJRcktjMW04aHV3VU1vS2xuNWd6VzgzQ2pHT1JxSXJHWEFTVEJqNHhYMU9WdTU0SnV6b3NFSi00Z3d6LVA5ZGRxQnZEZHV5MV9NQUVETzlsbl9sd3BBc09Daw?oc=5",
+      "source": "Mining.com",
+      "published": "2026-11-09T15:29:16.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Rio Tinto approves US$144 million investment to advance Resolution Copper project",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxPa2NoakVaTERNbjRGNnlSUFN0cjZwR2oyX2JOOVdENTNNN1lyVFo4TGM4dUR2RGtselVzZ05ITHA0X3N0UGFIelFJSkNFT3g5U0h1M1lDVkdGMXdVWW5jOHc0YnhaR3AxTGJtUEN0cXRaX1Vhb2VWT1VCQUxpYkl0RVNfWHVfMU5ueXpLX3VfM3JLaF9QSTBUUHFDTjNCck1lRHZLYXM0ekp2dkZubVM2TDRKUnI3MEY1M0FJVTRkQkg5aTdwTE9qRU5rQnE?oc=5",
+      "source": "Global Mining Review",
+      "published": "2026-11-09T15:21:47.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Montero Mining licenses BHP drilling data for Chile copper project",
+      "link": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxNQWhDM2RiV29tZmVWQ0VNS1B3Z2gyQ083allJVE9JMUpvSGtxLVQxMkpHWDJhZ1UxSFhxTzE1bFc5NHl1NUFDU2p2eHgxSDdobTVNOS1PZzRmeU1YSjlEeko3SXJoMmlsRy1sbVEyM0tGbjkwTkdCX3NQZ0dDa1JFLUMzaFMyVlAtR29aZWJXUHg2QTVyai1hZHRiQ3c4SU1hVmYxNEhULVRiV0Ixa3NvdmhVWmJTekRUTnQzMVM0NXVzY0YwdjNQbFhwSUstM3V4bkc4?oc=5",
+      "source": "Proactive financial news",
+      "published": "2026-11-09T15:06:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Chile's Codelco needs private partners to halt output fall, board chairman says",
+      "link": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxONjNiOUhpSFV5c3dhZWdmMGlUZzhQRmRwUXc2VGFncnh2bnp1U1dOX0M4bTQ4S2Q1YUQ5WnRuRmRES2tkQTBzRTZfUTB3WGhrMUdQSUM0aG5WdWpMV0VlLS05MnRLeW5RZU5YaGFGSklHUHFTVk5rX3BpRjBlUlVCODdxT0p1czV3V3c5TEk5d2pyZ1VTVVprTHppdW5NSVZWWDBZUVpWVHQ2UkpYdWJRSk1tT24zUm9vbmZ5VU9jbExwQ0E?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T14:50:09.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "BHP stock: Resolution Copper advances Arizona project with $144 million - ad-hoc-news.de",
+      "link": "https://news.google.com/rss/articles/CBMizAFBVV95cUxQOU5OYWwzbGZzTGdhQTN1R2lPa2Vpa2F1ZmpVS29LWDNXTkF5emFXSTI0YktrSlU3VkQ0Tzc2MjdrbnVOeDVNSjg3UHd2N2VIM2pZTWRuTmd0NkNLWkx1WHhWNHVCR3pTV2szWXkwMGZMYldCcU5fT01BRy1BMXdQSlpKUGVUZVhjUXpZNExKRzlFVUhYQXlJV2RZcGlWaklNOHUxaFozSVA1TTFjOEJpcjBzUzZfT0czZHp3aURaQzg4eUN3c3FEM0hZRHQ?oc=5",
+      "source": "ad-hoc-news.de",
+      "published": "2026-11-09T14:31:26.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Copper Forecast 09/11: Bulls Eye $6.50 Breakout (Video)",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxOcG5rS2NSU243YWVibkU5dFNSRDZVOUZVREQ3QW5aaDhHRzVha3ZpVzZnWGl0ZE1lR3ExUDFmSEE5b3ZOb05pWmIxNVZmTnB2LXFfWUNQa3RGWExxNkZxdGtzZ2xfTDRzRDJvNkl6WTEwZnFOOWtGakd1RmhOelZCZHB2UF9SNmtYRmlhTkIxamp6cFBuM3NTQ0wyMXFURTQ?oc=5",
+      "source": "Daily Forex",
+      "published": "2026-11-09T14:27:35.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "PNC to offer stablecoin payments to clients in Coinbase partnership",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxQbVdjV2lHeWNUbU1tbm4tVlhFZ1dreUc5QWdQaE9wdXpTaURqdnFWZWh4RkFaNEp1czBNUFUweHFaMlVMQ2ZDdk9xYWJ5eGdldy1oY2NYd0xaU3dWRzR0ZmZQWEUtcVZvbVNOUHBMU0VraTJBdllIMzBnc3ZsSE94QzNQNDJVaElGQUllWjkyTS1qX0ExQ2IyZTVDdEdyVU93NVJWVGVmdFR5ZGhJSklJWWJrQVM?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T14:07:47.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Codelco needs partners to halt copper decline: chair",
+      "link": "https://www.northernminer.com/news/codelco-needs-partners-to-halt-copper-decline-chair/1003897573/",
+      "source": "The Northern Miner",
+      "published": "2026-11-09T14:03:00.000Z",
+      "summary": "Chile’s state-owned Codelco needs more partnerships with private miners to halt its copper production decline, chairman Bernardo Fontaine told Santiago radio station Duna on Monday.... The post Codelco needs partners to halt copper decline: chair appeared…",
+      "image": null
+    },
+    {
+      "title": "Aterian Identifies Four Copper and Silver Targets at Botswana's PL199 in the Kalahari Copper Belt - News and Statistics",
+      "link": "https://news.google.com/rss/articles/CBMioAFBVV95cUxQQXczc1FGOFNjaTQ5UEhCMFUwcmdobnpiTGJVb3ZXM2hSU2FpUG8wZ3Y0QzZEX1o1eW5yRlR6T09mYkVuZmxVZFlPYU9zZ1lrNDZiWkp4LW40V2JDQjV4T1ZjTkVmWnA2OWFSVUgzS2JQdmNiU1I2dzIxVExNaFBmVGN3ZkJsQm9wYlBsVXhkVDU1Rk9lMklkRVpUNnNUX0E3?oc=5",
+      "source": "IndexBox",
+      "published": "2026-11-09T13:50:58.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Pakistan’s Mining Mystery: The Copper, the Military and Billions in Disputed Royalties",
+      "link": "https://news.google.com/rss/articles/CBMisgFBVV95cUxQbksyOVFmUGV6MnBkUFVjanpFMHZwMHNsR3MzMDdGcFpreUhqWUFuMVNfakZtMGdscTNvOXAxcThBTHFPaTFiTFM0a3NQcmd4dVE4NlhzTUJxbVpZQTZmTVZzQzhJY2U1TlcwU3QwUTFodTAzQ01jeGtCTzIta3BSWFZOdTQ0OXlqaUZzSERwLUlic3owQ2UzLWptdjFZRWJNVllFaXgwX3ZTUEJIZWw1aWh3?oc=5",
+      "source": "Views Bangladesh",
+      "published": "2026-11-09T13:47:47.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Northstar Gold Announces up to $1.15 Million in Flow-Through Private Placements to Drill Cam Copper Surgical Mining Target and Allied Gold Zone at the Miller Copper-Gold Property",
+      "link": "https://news.google.com/rss/articles/CBMiwAJBVV95cUxOUHkwaC1KUFZ4dnluWFljZTJHNzRsY0tfV0VicWd6Tm5kZ1o5MTMyWkdjSHB4UXA4aUdiMmM3R0ZDTGFIZ1V6Q0JzSjljZ1B0Y3RQMFl1ZHYxOUlFYTVYNG04VU1fSmkyaVZxa2pFZ09qR0g1UExjdmpGeHQtQlpRNE9JM25Tc2RCSTh6Q0NfZzVmMVhwX1l1S1NRamppQk5URWp4TXNXZWMyUTVtSk9BWV94a3hKdWZDUHhTcldzYkJXM2hJLWdjNlF1NGhfSGtXQkZEVDd5QkJjbWNUazJuOElxVWpWM0hER2I1eTVnYXg2QmdneG5OLVBQTEFVWldKdlZkcUNnN0Y3XzRhd1NfVlkyMTRCSkVzdGtreWRoeGtKc2xvY0NpUUR2bFNwODN2UlhyWnhuVUt1RnBlWTVhbA?oc=5",
+      "source": "TMX Newsfile",
+      "published": "2026-11-09T13:30:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Barlow’s Research Roundup: Copper mining stocks are undervalued after sector rout, says Scotiabank analyst",
+      "link": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxQNHlQelZJZWVxQjFLTHdXTHhBQTRDT0J5T3V3WGpTcmZ1a05rUkZVQmtsWnZBNW44T0FUaTF1a2tNa0U3OHBZNUZ3TnI4Vm0zdEVHYWIxUEc5cG5iRHNFRnZJUE1mS2JZbExfSEFSZTMtQkdNdlR3VlAxdXM3Ty1hWWI4bWRTNDVocHNWRUdsTTZUQ01kNWR6ZjU5WEk0YjF5akxfTWRibjQzZVFuby1ZeTNvNHM2VmVzZEdhZHpwOFJuMlMyQ1ZlRDJVbTJkQVBTcks5bTloNmU4elds?oc=5",
+      "source": "The Globe and Mail",
+      "published": "2026-11-09T13:12:43.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "$32 billion later and nothing to show for it: Codelco’s future hinges on private partners",
+      "link": "https://www.mining.com/32-billion-later-codelcos-future-hinges-on-private-partners/",
+      "source": "MINING.COM",
+      "published": "2026-11-09T13:03:00.000Z",
+      "summary": "Board chairman Bernardo Fontaine sounded the alarm as copper output fell despite massive capital pending over eight years.",
+      "image": null
+    },
+    {
+      "title": "60 Autonomous Electric Haul Trucks Achieve Site-Wide Operation at 5,400M Copper Mine",
+      "link": "https://news.google.com/rss/articles/CBMiywFBVV95cUxNbFc5UHRxQlpCcGZWSm5LNDkyeVFBVnBnRmJGcEdHX05RVGdMSXJ2TUFMRXNCQllBeTg5anFTdE1SOGs1S0E3VFQySFNPSTF4WUVFRml2cTlHcTlwVF95bUx4aVpjdTNTS2t3Qnp3eVhlaGROSzRRQ2tKbk04WUtRVlBWUzFKLUo1Z1FnVEpVVEtiOEFHSERTeVFybVhtM3BuUENNUzZiRkhxYXFxeGRUUmx5TWp0WGRJSldVZW9sUjAtYnNKQWdSZkRSUQ?oc=5",
+      "source": "Fuel Cells Works",
+      "published": "2026-11-09T13:02:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Okopa advances Namibian copper project",
+      "link": "https://news.google.com/rss/articles/CBMijwFBVV95cUxPRG5XY3M3bzNDaXVmdFZIQlRNWDR1ZGlOakE5dXdZNGZkWDMzdUctWWpUSzFfek1sVE5RamQtWjk3MXNLS29iR2xNUGQ0X1QyQjNNdUpEV2RrdzJwNlMxZHZKOGM1VVJBX1BfQUY3U05hU09EbmlRb0tEOFpBRjllaHNyeW1VNmRqM2k3U2pLOA?oc=5",
       "source": "Mining Weekly",
-      "published": "2026-11-09T19:39:58.188Z",
-      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "published": "2026-11-09T12:24:00.000Z",
+      "summary": "",
       "image": null
     },
     {
-      "title": "Sample card: live copper headlines from Investing News Network appear here after the first data update",
-      "link": "https://investingnews.com/category/daily/resource-investing/base-metals-investing/copper-investing/",
+      "title": "Avalanche to support NYSE's affiliated upcoming digital ATS: NYSE Content Update",
+      "link": "https://investingnews.com/avalanche-to-support-nyse-s-affiliated-upcoming-digital-ats-nyse-content-update/",
       "source": "Investing News Network",
-      "published": "2026-11-09T18:39:58.188Z",
-      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "published": "2026-11-09T11:55:00.000Z",
+      "summary": "NYSE issues a pre-market daily advisory direct from the trading floor. The New York Stock Exchange (NYSE) provides a daily pre-market update directly from the NYSE Trading Floor. Access today's NYSE Pre-market update for market insights before trading begins…",
       "image": null
     },
     {
-      "title": "Sample card: live copper headlines from Google News appear here after the first data update",
-      "link": "https://news.google.com/search?q=copper",
-      "source": "Google News",
-      "published": "2026-11-09T17:39:58.188Z",
-      "summary": "This is placeholder content committed so the layout can be previewed. The scheduled GitHub Action replaces it with real articles from public RSS feeds.",
+      "title": "Barrick in charts: Barrick Mining in Charts: Higher copper prices boost sales as gold production struggles to regain momentum",
+      "link": "https://news.google.com/rss/articles/CBMilAJBVV95cUxQN1N3YXQ1cHlqUWswZVlYTFJOWF9qX0FITEZFbW5NRmQxRnBiTmJGOUhUbkNpaTVqMlRPeW43VWw0WEpDblBkM3VKaXlpR2Nydl9YRnc0cVNDaU5IZXlETWxJV1hOOVpqWFE5U2k1ZzVyVTFvUE55aTduelNxV1o0TWtad3lGeFdod3MzLUVZamd0S0pscHRMd1dBN1E5WVQ4VXN4NFpoZ0FVUkxDYXYyYVFwWVUwd01FeENxVjloUjhhZWhPTl9FWGZGLUtzOEZZSzIzelhvYS1NdUlZTG1DN0Q2cjB0bUJ1eUN6T2wzajBwQndpMXBiU3ZKZW5TTVJFQ1l5aUJDSzExQlpiZUI2NkhkdEs?oc=5",
+      "source": "TradingView",
+      "published": "2026-11-09T11:32:24.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Copper rebounds on firmer risk sentiment and tight supply in China",
+      "link": "https://news.google.com/rss/articles/CBMiVkFVX3lxTE1zeVdnSmVmdF9yd2hSZjBMVV9nd1NHRWc2NjVzQWZ0QTZSelNCMUczRTF0Um1taWR0WGJYZFBKQ0VERnhOV0I3cUNHOFN1Q0NUYjJiT2RB0gFWQVVfeXFMTXN5V2dKZWZ0X3J3aFJmMExVX2d3U0dFZzY2NXNBZnRBNlJ6U0IxRzNFMXRSbW1pZHRYYlhkUEpDRURGeE5XQjdxQ0c4U3VDQ1RiMmJPZEE?oc=5",
+      "source": "Business Recorder",
+      "published": "2026-11-09T11:04:09.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Midas returns ‘shallow’ copper at Hartbeespoort",
+      "link": "https://news.google.com/rss/articles/CBMid0FVX3lxTE9jQnFVNHVSRDEwTXMyOWw2bUs4S3p4My1laXlIU2JDN2hsNTE3VEthdWdGSVdyUGQ0U1Y3OXZoVVZFR19yeVhzM0J4by0tcEFfOWV0TkZJMWw0MEVWLTlvamcyaG5XRWhJNkZ4c0p6N01nM19PVFNN?oc=5",
+      "source": "Mining.com.au",
+      "published": "2026-11-09T10:41:49.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Walhalla Gold Establishes District-Scale Geological Framework, Identifies Gold, Antimony and Copper-Nickel-PGE Exploration Opportunities",
+      "link": "https://news.google.com/rss/articles/CBMizAJBVV95cUxPbU1BYXF4SDZIOTdvVFhKQkZDX1VmdzJGTVF4akxjTlRMakJHQzBUU3pjZFh3SXE1b0x1dk02MF9UVmtfOGhGTk1HZEVpN0JQeld5SWNjUUlxOTQxT0prODJQdEZPSUtreGhUdVAzWnlYbHhMQm5mUHd6VkprTjVxREtSdjNXLXM0Y01NVUhEMllrZDVMYUhhck9ITGJrZWVYUkQtX3p2N1pRaUUxZzlkSW9vQ2Z4VjVDYXF3QTRCQWZRaE9pREpET0NQZkRYUUVvTnJSbHNZWUxSQVpWc0NWNFZXMlFOSzVJejQyRUVwQ2FfWDZYSjVZVHNuN0dsWUdrVi1OYm1fNEZleVBISkZsWTFvRnRyX3JYdjlZcEJEOVptQ2FYTTlkdEFQc3pRckc2NTdRVkZmY3dqbFJKYmhkRWc5QUFEMnBGRVdVMQ?oc=5",
+      "source": "Junior Mining Network",
+      "published": "2026-11-09T10:35:22.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Increased Budget Supports Drilling of Cookara Target at Nevertire South",
+      "link": "https://investingnews.com/increased-budget-supports-drilling-of-cookara-target-at-nevertire-south/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T10:30:00.000Z",
+      "summary": "Copper-gold explorer and hybrid prospect generator Kincora Copper Limited (ASX: KCC) (TSXV: KCC) (Kincora or the Company) is pleased to provide an update on ongoing drilling activities at its Nevertire South and Nyngan licences, including a newly named and…",
+      "image": null
+    },
+    {
+      "title": "JX Advanced Metals Lifts Profit Outlook On AI Server Demand",
+      "link": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPZGxQN0JpQ29RZ0FzeDloTHF4X1R2eGFWbjF1WEY2RmtqYmtqNkVIWDlIWHdkWXctRkdXS0VadmFtcHZfTWJhZU5SdENfRkdXLU11UDdNcDh5Y3dKcHRWdEdQVHJsM0RpY3JtajJRS2d6VEtnVnVLVW9uWHd2OFdWNUhZWWk4QlpzdjByaDlHc2U5Zw?oc=5",
+      "source": "Finimize",
+      "published": "2026-11-09T10:26:22.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "5255.JNX - | Stock Price & Latest News",
+      "link": "https://news.google.com/rss/articles/CBMib0FVX3lxTE5ZcWNfTHgyWDlIREk1Vkc3ajNRQ1dqck9BdDctVFY3MHRxM0UtQ1BmQzR2UkoxbDJ6TklXc0RVWi0zVHEyeHJibzkwTGcxSVVYYmdPZTh0ZERxb1BvZ181UV8zT3hkd2d4OFZxMDdxUQ?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T10:21:18.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Rio Tinto stock: Company approves $144 million copper step - ad-hoc-news.de",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNOGVBbnpDSWhpdzA5d1pyWnI3cW1YR195WG9MWE51UFBvZjl2blRWM0g2eEwweHFnX2Y4UmxJX01SNk5fZk1zN0VJb3hVUUFtdHpVX0xFcnpKb3NjUzcwY1REdi1iV0k4Y1U3cjhKdUJxTkNaOENpamhNcUc0T3RKcjBqNlE0NUxCaTNWYjZrdnh5ZTFhNXJNS1o3Nkc3bUs4ZG1STHBiT2d0RXFKR3Y1Y2t5dnBQNTJTRXZR?oc=5",
+      "source": "ad-hoc-news.de",
+      "published": "2026-11-09T10:00:58.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Intrepid Metals Reports Large, Multi-line, Multi-Station Gold in Soils Anomalies Including + 1 g/t from Mattie Gold Target at Corral Copper in Arizona",
+      "link": "https://investingnews.com/intrepid-metals-reports-large-multi-line-multi-station-gold-in-soils-anomalies-including-1-g-t-from-mattie-gold-target-at-corral-copper-in-arizona/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T10:00:00.000Z",
+      "summary": "Intrepid Metals Corp. (TSXV: INTR) (OTCQB: IMTCF) (\"Intrepid\" or the \"Company\") is pleased to report results from soil sampling at the Mattie Gold Target (\"Mattie\") within its Corral Copper Project (\"Corral\" or the \"Project\") in Cochise County, Arizona. The…",
+      "image": "https://investingnews.com/media-library/image.png?id=50341573&width=980"
+    },
+    {
+      "title": "Trailbreaker Intersects 5.02 g/t Au Over 2.30 M at Highlands Zone, Atsutla Gold Project, BC",
+      "link": "https://investingnews.com/trailbreaker-intersects-5-02-g-t-au-over-2-30-m-at-highlands-zone-atsutla-gold-project-bc/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T09:45:00.000Z",
+      "summary": "(TheNewswire) November 9, 2026 TheNewswire - Trailbreaker Resources Ltd. (TBK.V) (\"Trailbreaker\" or \"the Company\") is pleased to report assay results from its maiden 2026 Highlands Zone drill program at the Company's 100%-owned, 300 km² Atsutla Gold Project…",
+      "image": "https://investingnews.com/media-library/image.png?id=33364905&width=980"
+    },
+    {
+      "title": "Copper Price Forecast: China’s Tight Supply Lifts Prices Before US CPI",
+      "link": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxNUHh3Qmk5WE1qcms2dHYzWnVfME5STW90Q19xMG52ZVMwT1VINGZNNmRZazMtWENVSFdBdktFYUtYaFBmZUJHWUl2VThzc05jQnFhcG1oV203Ri1sNDEyZnY0eVZOY011eEJXb1pRZVlvdWZVcGlFaWY3MVMtTWU5bEN2MTlhWm44cGJSTW1jSFpuRkNmcTNJWWk5QWxpMFQ5OFQwUGVLWmd3T0pDZnZhUWR4LUhZVFNtS0lj?oc=5",
+      "source": "FXEmpire",
+      "published": "2026-11-09T09:44:54.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Copper scrap prices fall at start of November",
+      "link": "https://news.google.com/rss/articles/CBMinwFBVV95cUxONjNGeXF6MTM1cllVbGZfMWh1a2VHb0tKWWdPNzhLSGF5ZUktYjZXdWk2c0ljV01WLXNYbkhsYmxYbTVHLUx2M0NwU3Z0dXdxQk1aWW1DcVoxY0tTRlVKeVpJUU9yZHhaM0NLZDFKa3ljQlJzWTkwTVc4b3dGQm03by1JeWJsWGpCalRjRENGeUw0Ykx0TDdoc1JWdnhHUkU?oc=5",
+      "source": "EUWID Recycling and Waste Management",
+      "published": "2026-11-09T09:40:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Hannan Metals Upgrades to OTCQB Venture Market",
+      "link": "https://investingnews.com/hannan-metals-upgrades-to-otcqb-venture-market/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T09:30:00.000Z",
+      "summary": "Trading on the OTCQB Commences November 9, 2026, Under the Symbol \"HANNF\" Hannan Metals Limited (TSXV: HAN,OTC:HANNF) (OTCQB: HANNF) (\"Hannan\" or the \"Company\") announces that its common shares have been approved for trading on the OTCQB® Venture Market (the…",
+      "image": "https://investingnews.com/media-library/image.jpg?id=51766029&width=980"
+    },
+    {
+      "title": "ORVANA COMPLETES REPAYMENT OF EMIPA BONDS I, PROVIDES UPDATE ON ITS BOLIVIAN SUBSIDIARY, AND ANNOUNCES PARTICIPATION IN THE 2026 PRECIOUS METALS SUMMIT IN ZURICH",
+      "link": "https://investingnews.com/orvana-completes-repayment-of-emipa-bonds-i-provides-update-on-its-bolivian-subsidiary-and-announces-participation-in-the-2026-precious-metals-summit-in-zurich/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T09:00:00.000Z",
+      "summary": "TSX: ORV,OTC:ORVMF OTCQX: ORVMF Orvana Minerals Corp. (TSX: ORV,OTC:ORVMF) (OTCQX: ORVMF) (\"Orvana\" or the \"Company\") announces that its Bolivian subsidiary, Empresa Minera Paitití, S.A. (\"EMIPA\"), has repaid EMIPA Bonds I in full at maturity, and provides an…",
+      "image": "https://investingnews.com/media-library/image.gif?id=29734303&width=980"
+    },
+    {
+      "title": "Pan Global Resources Inc. to Participate in Deutsche Goldmesse Fall 2026 in Frankfurt",
+      "link": "https://investingnews.com/pan-global-resources-inc-to-participate-in-deutsche-goldmesse-fall-2026-in-frankfurt/",
+      "source": "Investing News Network",
+      "published": "2026-11-09T08:29:00.000Z",
+      "summary": "Pan Global Resources Inc. (TSXV: PGZ,OTC:PGZFF) (OTCQB: PGZFF) is pleased to announce its participation in Deutsche Goldmesse Fall 2026, taking place November 13 & 14, 2026 at The Westin Grand Frankfurt in Frankfurt, Germany. Members of the Pan Global…",
+      "image": "https://investingnews.com/media-library/image.png?id=32910792&width=980"
+    },
+    {
+      "title": "Meridian appoints EPCM firm for Cabaçal, mulls funding offers",
+      "link": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxPRFpGaUItdXItV2lVQ2ZsYV9IcEExX0VHUUJfSTB3dTF6Umk5YW5GdzJsMjl0X0VZUzBSeHkySjk5N1cxeEFiWTRZTWp5T2lidjRqNGJ4bDBUbHI2WnYxX3pSSDJ1UG1MdmlIc2FmYlJmZTFqOGQtbFBRUVlIUVBJRDA0bTUxSDdyZDBvUmhOYzFvVFk3VE0tVGpnVnVrd1RrYzAxLVMwLWdGUUk?oc=5",
+      "source": "Mining Weekly",
+      "published": "2026-11-09T07:34:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Explained: Why copper prices could fall further after four-month low amid US election outcome",
+      "link": "https://news.google.com/rss/articles/CBMigAJBVV95cUxNcmFGSEFVSnJMMDlwTE5FOURjWnF0VnFwUWtuTHpKb19BZmlobGVybm5FOHFhZTRFYTJGM2d1bGpFOE9FdW1veUxXMWpJWkVvRnExS1JyU3B5RVVxbFNNbGtWaXl6VnU3aHREbndUblNyUGdtZ2x5RWNwU01EcEdWM3Rldm5IUTAxQ1VaT1BPdTlFeFFEeDE0aE5XRnlHaWJLYVRtdXJjTGVtWEhOaS1KSUlYblU3dnByYXhPM0RscTY0LWJrRWhScGVpYThuS253VTl1VWxFM0E4U0ljSVJYaTVieTZvMGIxQnBydXUwekE5aXhEVmx0NU1RLW9KUFBM0gGGAkFVX3lxTFBqeFlVeW1kSkVHVDA4eVBYS0RQZkdDNFJqalRFWGJKYkdnMGsta19HMDVhRWdlV0IwU1Y2OVRadF93TU8tZzBKLTk5Rmt0OXd0QW1LRG95QmtFOGl6TFA4aFRIZlZoSjl4YUR1dnlNSVRiZzkxdDJoWmpMTnJlVGd1LXBXR0FFZVk1bzdkeEdoU01Rckh1QUx0NVhTZzRJc3QwMW92MGI0aVhscldrMGVuWEtKVTJtVnNYUnZUa3VhampOMUxkbXFFN0dDLVlaMXNwZW9CcUFIM3NoTXU2VnBtMlpFbEh6emE3aTR6OWppZjliRE1VM0FWUkl0NEcyWldYb2VjR1E?oc=5",
+      "source": "The Economic Times",
+      "published": "2026-11-09T07:32:55.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Halo Minerals' Unit Granted Provisional Mining Easement For Playa Verde Copper Tailings Project",
+      "link": "https://news.google.com/rss/articles/CBMi9wFBVV95cUxNZWRyNmtHZGRfVDJGWE11T1F0aDhUdjBRd25qNHl5eDZlV004ZTMtaGdlcFdNZU1NOENrWkhUYXQ3Vi1TYmJ1QUIybUdqSHFXR3QxUDE5aXBwMHNpTHowMnp1b3g4Y0FTMnlibjUxZ3V4elE2dGJkY1BzbkxtVDcxdXFrV1d6UzFqeXF0a1pfaGV5WG1Kb2VBcGdSc1BZTlNDRGc2OXU2bXNuVE5tRm9wR0Q4M3l6UTJyT1FYTWtVUkFkSHh2WFFNa3hkR2VfZU1rZG96RE5iZTZtbjlIenA1cGJxcV9qc2xJNlJsOWZJWVdicjk1cVZV?oc=5",
+      "source": "TradingView",
+      "published": "2026-11-09T07:16:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Copper Kings volleyball grounds Jets for district title",
+      "link": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNSjRUNkZpNDRaa2Vsc2R1bmZvS0JMNVk4QkNVVi1kYmdCVVVzUGY0aFo0VnNOUkxEOVFTVzhwWjBOSENSYWdLNkxranR4UnU3OXFnRHdCai1CTTM5bTh6N3FnYnFrdkh3UHhaWU1Ob09Fekd6SWRWcTByS1NuR1kyVk9BQVN3WmN3NG5RTk5Dak9YVEFjQUhHcmpfb3A5amNWY2phME9zcE9zenlNVjZwRnVKOHY?oc=5",
+      "source": "The Mining Gazette",
+      "published": "2026-11-09T06:52:08.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Hartbeespoort prospect yields notable results for Midas Minerals",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQRjZvNU9TcHNYSjEyMVJkUFYyeXQzR1VSTTRSSTY1bWJNVzRFcGVxTXRjQ3h4Y1AyRlh2eWxzd0YzQjBpTnZlOTFUTGFTcHVCQ2tNQkQxTEdVQ0FGS3NvQm91cFhvcU5HU1NmRG12WURoREQzSDVlNjR1NS10Wm5ObGRfY0lyOThHbFlwQ0pKN2Z2a1pjOFV1ZjduQWNGdlhNanU0MndR?oc=5",
+      "source": "African Mining Market",
+      "published": "2026-11-09T05:57:46.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Copper price recovers some losses– Forecast today – 9-11-2026",
+      "link": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxNdVo3YjdPVjBxeGpza3FFNmJZOHJ5SkViS3JjLURZTDAxaE90STJBVTNNM0JWQWNoZ2ticjFNNFlTcVRUYkVJMEF1VXU1NTJ2dWZOX1g5b3dYcklLQ3pPSVNQSUFaYlJHUEJubnI4VlROZnZvbmFGQ25kYS1acWpaLVgtZVBFeHN2d0lsUzN3MVo0YkZ0dmh1OC13WnpUSHFabFpHRV9ZTDFzVnMtUHBELW13ZkFSVFBuajBhX3FLUWxsWC1Gd28yMUQ4VzZjam93cW5UUA?oc=5",
+      "source": "Economies.com",
+      "published": "2026-11-09T05:21:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "TEKFF.GTC - | Stock Price & Latest News",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxOYmVTMWtrSlVMMWlKZW5kbFh6OFNMb1BWSGxkb3VJYUZrZFBxZ2gwT2ViVERia0Z4TUlwRjBPVzJRZEM3aDVCQnRKT0ZQRXV1RUlOVWp5UEtkUWVoNjhKMXVyOXVORWhaX2M2MzJDYmFSNGowbjRqU08tdDZsYUdCVUFjR2ZEallC?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-09T04:43:28.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "American West copper hits point to monster Canadian upside",
+      "link": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNX3cwcnBYdGtNbVg3dHNSN3RqbUdEWmgtZjR1YUIzaVFxbkhjNXZpNnNaNll6dVR2RzdZaVg2ck5KXzUzTHdEMHlfTFdaekFuNWU1endUMGR4d25RNDdOcVQ4eUlHTEJZOVlkdnpmU3N6R2RZYjh5V2YxY3k3LXVRa21lUElDRjRDdTJ4YV92OEhXZS1LREVsSzYtZ1hSRkd4NjVaSHBYRG8zNnFOTDMxeFZTZlYtUdIBuwFBVV95cUxPTE1wVlRMdDlfdnZabWRnR2JTVmpyZk85OE1ERG55NmZHSTdOckxscktmSUZ0dGtJVHdpTFptMFByYmlPVjRCU21ieVFYc3lmZndzUmhhcFJDeXBIU00ybW14LXRPalZnRUw3RFl3Ri1yWWtITUREdWRhampZRFZjcld1a2JIU0s2Y0RjU3l4Q0xDVXhZeUZjZkxCcHVDcGZCR2o2Um5SSXMzR25QYXF4YzFyNUY4dUdOREM0?oc=5",
+      "source": "The West Australian",
+      "published": "2026-11-09T03:46:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Conjuring mines success in CQ",
+      "link": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE1XU3lFNjVaNGRPREJoS0RWSk9qVFNVUWZIQk5XdTFYU0lQVmpMczFRYlhaZkJudVhwTG9HaVVHLXB0ZXV4XzV3SHNyVzhQbXl0YTd4bFJVUXVkYTVDLVk1X1NpcFNDUGx5?oc=5",
+      "source": "Industry Queensland",
+      "published": "2026-11-09T02:16:27.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "UBS Adjusts Jiangxi Copper's Price Target to HK$38",
+      "link": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQUmw2YkFFNi15aldaWlJuTDB6VkZXZVBSUkUxSVFRVVA4c1NpUllHVUFuaEV6dUp5TFBaM0k3dFFwS0NRZkdndkIxYlZEUVVBOUVBRWplbHVKSkc1bmlyUUp0UDFWMkRwWFdlbF9OZnZGaFRfSW5MSFFpRlUwOTlrLXU1LTNRUkpiZkFBdFpyUnRqUHFfMkk4bFhKRDhYWU5PWS1FNUln?oc=5",
+      "source": "www.marketscreener.com",
+      "published": "2026-11-09T01:12:15.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Congo pushes US to implement mining investment, localize copper-cobalt processing [SMM Copper Morning Meeting Summary]",
+      "link": "https://news.google.com/rss/articles/CBMimgJBVV95cUxQMVM3OEc1d3lyaHBhMk1OaER0Rl95V2hjc1BMVnBVbE13Y0s0NzJsLXZ5amlwcGR0SnNvX2RfWmlydGtHWC1xeEtpQkdmcXo2S3R5eTR2NVdvVzNDTXZUd3lYSWlWWDVvSEZJT2lNb09Oc090X2FSSm1wb0x3Z2FQbG5ZaHRrZE9sOU5IZUI3b29VTlNuMGI3MS1zRC1WcWJaRmY3SDZEX1lqSF93QVItaU5pdkRjc25Zb3BsR3lxcDVIck56OUpSdzFOVnZjbDFFSkJHYTFBNFFjYmE0TnVkbXIxTFNyVzhGUXlXZ0Z1U1Q3dFBOYmxzZ2VxZndYMzNKRUNtMlh4bV9ub3BOTTVScGl2VHRyWXRzSnc?oc=5",
+      "source": "Shanghai Metals Market",
+      "published": "2026-11-09T01:00:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Trafigura targets copper supplies as China squeeze deepens",
+      "link": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxNQUNJTldRNkEtaDc5SlJpVzRrbGs1alNQLXZhVXV2MnRibHRuanB0N0NYSDV0aG1WczlIeHd2VTBvdEZHcGpSc3k5LW1YaTBJNi1uWll6VWVyeGRvanZ3Z0ZVaGZVRlRvM3FvWUpIb2JhTm1mTFdUODEyU3AtMEozTTNBdnRkSWVt?oc=5",
+      "source": "Mining.com.au",
+      "published": "2026-11-09T00:06:34.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "2980.HK%5EB21 - | Stock Price & Latest News",
+      "link": "https://news.google.com/rss/articles/CBMilwFBVV95cUxOSExVaWt0MC1tVFIyOTFmN25ueDRiYTZaXzBfUXh5akhNSlJkOE5ud25vdDlUamV0ckJNVEliTDNlejM2OEo4Q1ZqSFRydWxac0JFS3Fzb05tUXRfaXU4UXhKUE5SeVRUb2s5dHBtVEljUjJucWc3RGs1S2h3U2RqZUJ5d0NMckhiLVMydmZtR1pRQTE4Q0dr?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-08T22:55:15.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Cryptocurrencies slide to two-month lows after US midterms",
+      "link": "https://news.google.com/rss/articles/CBMiogFBVV95cUxOZ19jb0ZtdjRvY1E4V0ltOHBXdkI0UXpfY3lNeFVhM0pxRUlUUmVhWVdRSW1Ec25SMnVvSXVxQ0hQcjJfamxSWWpRSVNoYnh4QUxaSHlHRExaWVBiNklkRUpvM1dMZENjS1RNRzJJUFNydjN2RVFpQkxfcGpSaGNUREEyX29scVBNTkoycjdRckk1ZFBIaTgybHh1NjU4eUxVUEE?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-08T22:27:00.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "Three copper deposits earmarked for exploration",
+      "link": "https://news.google.com/rss/articles/CBMihgFBVV95cUxQSDY1TmpSem9vcDFrSFdub2FsSlJ2SUZheXFQbXBQRG9uX1BCM2JZaFRRNVZ4QnpVNTlqWkhQVkRiSEFnMFJ6OUFHSjVFRmNQNVVPZnZmSXByb3ozbzNKWFhMMjZER0FOOGhjTlM3SDJuMU5VR1UyWFZfREFNYktwLUx3dlNTQQ?oc=5",
+      "source": "Herald.co.zw",
+      "published": "2026-11-08T22:02:33.000Z",
+      "summary": "",
+      "image": null
+    },
+    {
+      "title": "IL0010972607.TRE - | Stock Price & Latest News",
+      "link": "https://news.google.com/rss/articles/CBMikAFBVV95cUxQZms1Y2lOZVpfR2FZNTZ3NExxY3NQV0Y4MkFmU2hyWEYxaEZGemxNbm5YTElxRS01Wmh6Vmx1bF9TYnFoWVVlVno0RTFIclpEc05wV1F0Q1FiV3pROTdKd1o1aEZRaTNYZVA2WDVxZWVCeEV2VVFZeFBhVENiWUdYTVBTTmlUYlpDUkJWRnBpSDQ?oc=5",
+      "source": "Reuters",
+      "published": "2026-11-08T21:50:39.000Z",
+      "summary": "",
       "image": null
     }
   ]
