@@ -46,4 +46,4 @@ npm run fetch     # fetch real news + prices into site/data/
 npm run serve     # preview site/ locally
 ```
 
-To add a news source, add an entry to `scripts/feeds.json`. A story is kept only if its **headline** mentions copper or a copper-only producer or mine (Codelco, Escondida, KGHM…); see `isCopperRelated()`. Publisher spellings are merged in `canonicalSource()` in `scripts/lib.mjs`.
+To add a news source, add an entry to `scripts/feeds.json`. A story is kept only if its **headline** is about copper: it mentions copper or a copper-only producer or mine (Codelco, Escondida, KGHM…), names no other commodity before copper, and isn't a sports story. See `isCopperHeadline()` in `scripts/lib.mjs`. Publisher spellings are merged in `canonicalSource()` in `scripts/lib.mjs`.

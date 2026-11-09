@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import Parser from 'rss-parser';
 import {
-  isCopperRelated, canonicalSource, isJunkTitle, googleArticleId, decodeOldStyleId,
+  isCopperRelated, isCopperHeadline, canonicalSource, isJunkTitle, googleArticleId, decodeOldStyleId,
   parseGoogleSignature, parseBatchExecuteResponse, buildBatchExecuteBody, decodeGoogleNewsUrl, extractItemImage, extractOgImage, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
 } from '../scripts/lib.mjs';
 
@@ -156,4 +156,24 @@ test('decodeGoogleNewsUrl drives the two requests', async () => {
   const out = await decodeGoogleNewsUrl('https://news.google.com/rss/articles/CBMiOpaque?oc=5', fakeFetch);
   assert.equal(out, 'https://www.reuters.com/markets/commodities/copper-rallies-2026-11-09/');
   assert.deepEqual(calls.map((c) => c[1]), ['GET', 'POST']);
+});
+
+test('isCopperHeadline: copper must be the subject', () => {
+  const keep = [
+    'Copper price rebounds on firmer risk sentiment',
+    'Aterian Identifies Four Copper and Silver Targets at Botswana PL199',
+    "Chile's Codelco needs private partners to halt output fall",
+    'Barrick in charts: Higher copper prices boost sales as gold climbs',
+    'Congo pushes US to localize copper-cobalt processing',
+  ];
+  const drop = [
+    'Northstar Gold Announces Flow-Through Placements to Drill Cam Copper Target',
+    'Walhalla Gold Identifies Gold, Antimony and Copper-Nickel-PGE Opportunities',
+    'Intrepid Metals Reports Gold in Soils Anomalies at Corral Copper in Arizona',
+    'Copper Kings volleyball grounds Jets for district title',
+    'Barrick targets November filing for North American IPO',
+  ];
+  for (const t of keep) assert.ok(isCopperHeadline(t), t);
+  for (const t of drop) assert.ok(!isCopperHeadline(t), t);
+  assert.ok(!isCopperHeadline('Copper Valley wins again', 'https://news.example.com/sports/local/123'));
 });
