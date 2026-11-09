@@ -4,10 +4,13 @@ import { dirname } from 'node:path';
 
 export const LB_PER_TONNE = 2204.62262;
 
+// Copper-only producers and mines whose news is copper news even when the word isn't used.
+const COPPER_NAMES_RE = /\b(codelco|kghm|escondida|grasberg|kamoa|kakula|antofagasta|freeport[- ]mcmoran|cobre|oyu tolgoi|collahuasi|chuquicamata|resolution copper)\b/i;
+
 export function isCopperRelated(text) {
   const t = text || '';
   // "Cu" is matched case-sensitively so e.g. "CU Boulder" doesn't count.
-  return /\bcopper\b/i.test(t) || /\bCu\b/.test(t);
+  return /\bcopper\b/i.test(t) || /\bCu\b/.test(t) || COPPER_NAMES_RE.test(t);
 }
 
 export function stripHtml(html) {
@@ -69,6 +72,23 @@ export function isHttpUrl(url) {
   }
 }
 
+// Known spellings of the same publisher, keyed by lowercase name without "www.".
+const SOURCE_ALIASES = {
+  'mining.com': 'MINING.COM',
+  'marketscreener.com': 'MarketScreener',
+  'proactive financial news': 'Proactive',
+  'proactive investors': 'Proactive',
+  'reuters.com': 'Reuters',
+  'the globe and mail': 'The Globe and Mail',
+};
+
+/** Normalize publisher names so e.g. "Mining.com" and "MINING.COM" share one filter chip. */
+export function canonicalSource(name) {
+  const clean = String(name || '').trim().replace(/^www\./i, '');
+  if (!clean) return 'Unknown';
+  return SOURCE_ALIASES[clean.toLowerCase()] || clean;
+}
+
 /** Turn one rss-parser item into our article shape, or null if unusable / off-topic. */
 export function normalizeItem(item, feed) {
   if (!item || !item.title || !isHttpUrl(item.link)) return null;
@@ -80,13 +100,16 @@ export function normalizeItem(item, feed) {
     title = split.title;
     source = source || split.publisher || (item.source && (item.source._ || item.source)) || 'Google News';
   }
-  source = source || feed.name;
+  source = canonicalSource(source || feed.name);
 
   // Google News descriptions are just a link list repeating the title — skip them.
   const rawSummary = isGoogle ? '' : (item.contentSnippet || item.summary || item.content || '');
   const summary = truncate(stripHtml(rawSummary));
 
-  if (!feed.copperOnly && !isCopperRelated(`${title} ${summary} ${(item.categories || []).join(' ')}`)) {
+  // Every item must mention copper, even from copper-specific feeds and searches:
+  // Google News queries in particular return loosely related stories.
+  const categories = (item.categories || []).map((c) => (typeof c === 'string' ? c : c?._ || '')).join(' ');
+  if (!isCopperRelated(`${title} ${summary} ${categories}`)) {
     return null;
   }
 
@@ -94,13 +117,66 @@ export function normalizeItem(item, feed) {
   const date = dateStr ? new Date(dateStr) : null;
   const published = date && !Number.isNaN(date.getTime()) ? date.toISOString() : null;
 
-  let image = null;
-  const enc = item.enclosure;
-  if (enc && enc.url && /^image\//.test(enc.type || 'image/') && isHttpUrl(enc.url)) image = enc.url;
-  const media = item['media:content'] || item['media:thumbnail'];
-  if (!image && media && media.$ && isHttpUrl(media.$.url)) image = media.$.url;
+  const image = extractItemImage(item);
 
   return { title, link: item.link, source, published, summary, image };
+}
+
+/** Map case-only variants of a source name to its most common spelling. */
+export function unifySourceSpellings(articles) {
+  const counts = new Map();
+  for (const a of articles) {
+    if (!a) continue;
+    const key = String(a.source || "").toLowerCase();
+    const byName = counts.get(key) || new Map();
+    byName.set(a.source || "", (byName.get(a.source || "") || 0) + 1);
+    counts.set(key, byName);
+  }
+  const best = new Map();
+  for (const [key, byName] of counts) {
+    best.set(key, [...byName].sort((x, y) => y[1] - x[1] || x[0].localeCompare(y[0]))[0][0]);
+  }
+  return articles.map((a) => (a && a.source ? { ...a, source: best.get(a.source.toLowerCase()) } : a));
+}
+
+/** Best image URL carried by an RSS item itself (enclosure, media tags, or first <img> in the content). */
+export function extractItemImage(item) {
+  const candidates = [];
+  const enc = item.enclosure;
+  if (enc && enc.url && /^image\//.test(enc.type || 'image/')) candidates.push(enc.url);
+  for (const key of ['media:content', 'media:thumbnail']) {
+    const m = item[key];
+    for (const entry of Array.isArray(m) ? m : [m]) {
+      if (entry && entry.$ && entry.$.url && (!entry.$.medium || entry.$.medium === 'image')) candidates.push(entry.$.url);
+    }
+  }
+  const html = `${item['content:encoded'] || ''} ${item.content || ''}`;
+  for (const m of html.matchAll(/<img[^>]+src=["']([^"']+)["']/gi)) candidates.push(m[1].replace(/&amp;/g, '&'));
+  return candidates.find((u) => isHttpUrl(u) && !isTrackingPixel(u)) || null;
+}
+
+function isTrackingPixel(url) {
+  return /(feedburner|pixel|tracking|1x1|spacer|gravatar|blank\.gif|\/emoji\/)/i.test(url);
+}
+
+/** Pull og:image / twitter:image out of an article page's HTML, resolved against the page URL. */
+export function extractOgImage(html, pageUrl) {
+  const metas = String(html || '').match(/<meta\b[^>]*>/gi) || [];
+  const wanted = ['og:image:secure_url', 'og:image', 'og:image:url', 'twitter:image', 'twitter:image:src'];
+  const found = {};
+  for (const tag of metas) {
+    const key = /(?:property|name)\s*=\s*["']([^"']+)["']/i.exec(tag)?.[1]?.toLowerCase();
+    const content = /content\s*=\s*["']([^"']+)["']/i.exec(tag)?.[1];
+    if (key && content && wanted.includes(key) && !found[key]) found[key] = content.replace(/&amp;/g, '&').trim();
+  }
+  for (const key of wanted) {
+    if (!found[key]) continue;
+    try {
+      const abs = new URL(found[key], pageUrl).toString();
+      if (isHttpUrl(abs) && !isTrackingPixel(abs)) return abs;
+    } catch { /* ignore bad URL */ }
+  }
+  return null;
 }
 
 /** Dedupe by URL and normalized title, sort newest first, cap the list. */
@@ -109,6 +185,7 @@ export function mergeArticles(articles, { limit = 60, maxAgeDays = 30, now = Dat
   const seenUrls = new Set();
   const out = [];
   const minTime = now - maxAgeDays * 86400e3;
+  articles = unifySourceSpellings(articles);
   const sorted = [...articles].sort(
     (a, b) => (b.published ? Date.parse(b.published) : 0) - (a.published ? Date.parse(a.published) : 0),
   );

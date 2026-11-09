@@ -130,13 +130,30 @@
     for (const [s, n] of sources) chips.append(mk(s, s, n));
   }
 
+  // Simple string hash so each story keeps the same generated artwork between visits.
+  function hash(str) {
+    let h = 2166136261;
+    for (let i = 0; i < str.length; i++) h = Math.imul(h ^ str.charCodeAt(i), 16777619);
+    return h >>> 0;
+  }
+
+  // Copper-plate artwork for stories whose feed has no picture.
+  function art(a) {
+    const h = hash(a.link || a.title || '');
+    const node = el('div', { class: `card-art v${h % 4}`, 'aria-hidden': 'true' },
+      el('span', { class: 'art-ingot' }),
+      el('span', { class: 'art-source' }, a.source || 'Copper'));
+    node.style.setProperty('--rot', `${(h >> 3) % 40 - 20}deg`);
+    return node;
+  }
+
   function card(a) {
     const href = safeUrl(a.link);
     const imgUrl = a.image ? safeUrl(a.image) : null;
     const img = imgUrl
       ? el('img', { class: 'card-img', src: imgUrl, alt: '', loading: 'lazy', referrerpolicy: 'no-referrer' })
-      : null;
-    if (img) img.addEventListener('error', () => { img.style.display = 'none'; });
+      : art(a);
+    if (imgUrl) img.addEventListener('error', () => img.replaceWith(art(a)), { once: true });
     const time = a.published
       ? el('time', { datetime: a.published, title: new Date(a.published).toLocaleString() }, relTime(a.published))
       : null;

@@ -3,13 +3,19 @@
 import Parser from 'rss-parser';
 import { fileURLToPath } from 'node:url';
 import { dirname, join } from 'node:path';
-import { readJson, writeJson, normalizeItem, mergeArticles, fetchWithTimeout } from './lib.mjs';
+import { readJson, writeJson, normalizeItem, mergeArticles, fetchWithTimeout, extractOgImage } from './lib.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const OUT = join(root, 'site/data/news.json');
 
 const parser = new Parser({
-  customFields: { item: [['media:content', 'media:content'], ['media:thumbnail', 'media:thumbnail'], 'source'] },
+  customFields: {
+    item: [
+      ['media:content', 'media:content', { keepArray: true }],
+      ['media:thumbnail', 'media:thumbnail', { keepArray: true }],
+      'source',
+    ],
+  },
 });
 
 async function loadFeed(feed) {
@@ -40,6 +46,48 @@ if (articles.length === 0) {
   console.error('No articles fetched; leaving existing news.json untouched.');
   process.exit(0);
 }
+
+// ---------- Images: reuse previous lookups, then try og:image on the article page ----------
+const previous = await readJson(OUT, { articles: [] });
+const knownImages = new Map((previous.articles || []).filter((a) => a.image !== undefined).map((a) => [a.link, a.image]));
+
+async function pageImage(link) {
+  const res = await fetchWithTimeout(link, { timeout: 8000, headers: { Accept: 'text/html' } });
+  if (!/html/i.test(res.headers.get('content-type') || '')) return null;
+  // og tags live in <head>; don't download whole pages.
+  const reader = res.body.getReader();
+  let html = '';
+  const decoder = new TextDecoder();
+  while (html.length < 300_000) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    html += decoder.decode(value, { stream: true });
+    if (/<\/head>/i.test(html)) break;
+  }
+  reader.cancel().catch(() => {});
+  return extractOgImage(html, res.url || link);
+}
+
+// Google News links are opaque redirects, so only direct publisher links are looked up.
+const toLookUp = articles.filter((a) => !a.image && !/news\.google\.com/.test(a.link));
+let found = 0;
+const queue = [...toLookUp];
+async function worker() {
+  for (let a = queue.shift(); a; a = queue.shift()) {
+    if (knownImages.has(a.link)) {
+      a.image = knownImages.get(a.link);
+      continue;
+    }
+    try {
+      a.image = await pageImage(a.link);
+    } catch {
+      a.image = null;
+    }
+    if (a.image) found++;
+  }
+}
+await Promise.all(Array.from({ length: 6 }, worker));
+console.log(`Images: ${articles.filter((a) => a.image).length}/${articles.length} (${found} new from article pages)`);
 
 await writeJson(OUT, {
   generatedAt: new Date().toISOString(),

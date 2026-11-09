@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import Parser from 'rss-parser';
 import {
-  isCopperRelated, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
+  isCopperRelated, canonicalSource, extractItemImage, extractOgImage, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
 } from '../scripts/lib.mjs';
 
 test('isCopperRelated', () => {
@@ -11,6 +11,7 @@ test('isCopperRelated', () => {
   assert.ok(isCopperRelated('Cu cathode premiums'));
   assert.ok(!isCopperRelated('CU Boulder wins'));
   assert.ok(!isCopperRelated('Gold rallies'));
+  assert.ok(isCopperRelated("Chile's Codelco needs private partners"));
 });
 
 test('stripHtml and truncate', () => {
@@ -27,7 +28,7 @@ test('splitGoogleTitle', () => {
 test('normalizeItem on fixture feed filters off-topic and unsafe links', async () => {
   const xml = await readFile(new URL('./fixtures/mining.xml', import.meta.url), 'utf8');
   const parsed = await new Parser({ customFields: { item: [['media:content', 'media:content']] } }).parseString(xml);
-  const feed = { name: 'Mining', source: 'MINING.COM', url: 'https://www.mining.com/feed/', copperOnly: false };
+  const feed = { name: 'Mining', source: 'MINING.COM', url: 'https://www.mining.com/feed/' };
   const items = parsed.items.map((i) => normalizeItem(i, feed)).filter(Boolean);
   assert.equal(items.length, 1);
   assert.equal(items[0].source, 'MINING.COM');
@@ -37,7 +38,7 @@ test('normalizeItem on fixture feed filters off-topic and unsafe links', async (
 });
 
 test('normalizeItem Google News splits publisher', () => {
-  const feed = { name: 'G', source: null, url: 'https://news.google.com/rss/search?q=copper', copperOnly: true };
+  const feed = { name: 'G', source: null, url: 'https://news.google.com/rss/search?q=copper' };
   const a = normalizeItem({ title: 'Copper slides - Bloomberg', link: 'https://news.google.com/x', isoDate: '2026-11-09T00:00:00Z', contentSnippet: 'dup' }, feed);
   assert.equal(a.title, 'Copper slides');
   assert.equal(a.source, 'Bloomberg');
@@ -66,4 +67,38 @@ test('buildPrices', () => {
   assert.equal(p.conversions.usdPerTonne, Math.round(5 * LB_PER_TONNE));
   assert.equal(p.conversions.eurPerTonne, Math.round(5 * LB_PER_TONNE * 0.9));
   assert.throws(() => buildPrices({}, 0.9));
+});
+
+test('off-topic items are dropped even from copper searches', () => {
+  const feed = { name: 'G', source: 'Reuters', url: 'https://news.google.com/rss/search?q=copper+site:reuters.com' };
+  const item = { title: 'Democratic US senators see hope for permitting bill - Reuters', link: 'https://news.google.com/y', isoDate: '2026-11-09T00:00:00Z' };
+  assert.equal(normalizeItem(item, feed), null);
+  const tagged = { title: 'Vale lifts outlook', link: 'https://x/v', isoDate: '2026-11-09T00:00:00Z', categories: [{ _: 'Copper' }] };
+  assert.ok(normalizeItem(tagged, { name: 'M', source: 'MINING.COM', url: 'https://www.mining.com/feed/' }));
+});
+
+test('canonicalSource and unifySourceSpellings merge publisher variants', () => {
+  assert.equal(canonicalSource('Mining.com'), 'MINING.COM');
+  assert.equal(canonicalSource('www.marketscreener.com'), 'MarketScreener');
+  assert.equal(canonicalSource(' Kitco '), 'Kitco');
+  const out = unifySourceSpellings([{ source: 'Foo News' }, { source: 'FOO NEWS' }, { source: 'Foo News' }]);
+  assert.deepEqual(out.map((a) => a.source), ['Foo News', 'Foo News', 'Foo News']);
+});
+
+test('extractItemImage finds media, enclosure and inline images', () => {
+  assert.equal(extractItemImage({ enclosure: { url: 'https://x/e.jpg', type: 'image/jpeg' } }), 'https://x/e.jpg');
+  assert.equal(extractItemImage({ 'media:content': [{ $: { url: 'https://x/m.jpg', medium: 'image' } }] }), 'https://x/m.jpg');
+  assert.equal(
+    extractItemImage({ 'content:encoded': '<p><img src="https://feeds.feedburner.com/~r/pixel.gif"><img src="https://x/c.jpg?a=1&amp;b=2"></p>' }),
+    'https://x/c.jpg?a=1&b=2', // tracking pixel skipped
+  );
+  assert.equal(extractItemImage({ content: '<img class="wp" src="https://x/c.jpg?a=1&amp;b=2">' }), 'https://x/c.jpg?a=1&b=2');
+  assert.equal(extractItemImage({ title: 'none' }), null);
+});
+
+test('extractOgImage reads og/twitter tags and resolves relative URLs', () => {
+  const html = '<head><meta name="twitter:image" content="https://cdn/t.jpg"><meta content="/img/og.png" property="og:image"></head>';
+  assert.equal(extractOgImage(html, 'https://site.com/news/a'), 'https://site.com/img/og.png');
+  assert.equal(extractOgImage('<meta name="twitter:image" content="https://cdn/t.jpg">', 'https://s.com'), 'https://cdn/t.jpg');
+  assert.equal(extractOgImage('<html></html>', 'https://s.com'), null);
 });
