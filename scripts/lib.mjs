@@ -3,6 +3,7 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { dirname } from 'node:path';
 
 export const LB_PER_TONNE = 2204.62262;
+export const LB_PER_KG = 2.20462262;
 
 // Copper-only producers and mines whose news is copper news even when the word isn't used.
 const COPPER_NAMES_RE = /\b(codelco|kghm|escondida|grasberg|kamoa|kakula|antofagasta|freeport[- ]mcmoran|cobre|oyu tolgoi|collahuasi|chuquicamata|resolution copper)\b/i;
@@ -343,6 +344,36 @@ export function buildPrices(yahooChart, eurPerUsd, now = new Date()) {
       eurPerUsd: round(eurPerUsd, 5),
     },
   };
+}
+
+/**
+ * Turn a Yahoo chart response into compact [unixSeconds, close] points.
+ * `scale` converts units (e.g. USD/lb -> USD/kg); London prices in pence (GBp) become pounds.
+ */
+export function parseYahooSeries(chart, { scale = 1, currency } = {}) {
+  const result = chart?.chart?.result?.[0];
+  if (!result) throw new Error(chart?.chart?.error?.description || 'Yahoo response has no result');
+  const meta = result.meta || {};
+  let factor = scale;
+  let cur = currency || meta.currency || null;
+  if (cur === 'GBp' || cur === 'GBX') {
+    factor /= 100;
+    cur = 'GBP';
+  }
+  const times = result.timestamp || [];
+  const closes = result.indicators?.quote?.[0]?.close || [];
+  const round = (n) => Number(n.toPrecision(6));
+  const points = [];
+  times.forEach((t, i) => {
+    const c = closes[i];
+    if (typeof c === 'number' && Number.isFinite(c) && c > 0) points.push([t, round(c * factor)]);
+  });
+  const last = typeof meta.regularMarketPrice === 'number' ? round(meta.regularMarketPrice * factor) : points.at(-1)?.[1] ?? null;
+  // Make the newest point match the live price so the chart ends where the headline number is.
+  if (last != null && points.length && meta.regularMarketTime && meta.regularMarketTime >= points.at(-1)[0]) {
+    points[points.length - 1] = [points.at(-1)[0], last];
+  }
+  return { currency: cur, last, points };
 }
 
 export async function readJson(path, fallback = null) {

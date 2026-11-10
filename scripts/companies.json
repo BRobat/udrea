@@ -1,0 +1,13 @@
+[
+  { "symbol": "KGH.WA", "name": "KGHM Polska Miedź", "country": "Poland", "exchange": "Warsaw" },
+  { "symbol": "FCX", "name": "Freeport-McMoRan", "country": "USA", "exchange": "NYSE" },
+  { "symbol": "SCCO", "name": "Southern Copper", "country": "USA / Peru", "exchange": "NYSE" },
+  { "symbol": "ANTO.L", "name": "Antofagasta", "country": "Chile / UK", "exchange": "London" },
+  { "symbol": "2899.HK", "name": "Zijin Mining", "country": "China", "exchange": "Hong Kong" },
+  { "symbol": "0358.HK", "name": "Jiangxi Copper", "country": "China", "exchange": "Hong Kong" },
+  { "symbol": "IVN.TO", "name": "Ivanhoe Mines", "country": "Canada", "exchange": "Toronto" },
+  { "symbol": "FM.TO", "name": "First Quantum Minerals", "country": "Canada", "exchange": "Toronto" },
+  { "symbol": "LUN.TO", "name": "Lundin Mining", "country": "Canada", "exchange": "Toronto" },
+  { "symbol": "CS.TO", "name": "Capstone Copper", "country": "Canada", "exchange": "Toronto" },
+  { "symbol": "HBM", "name": "Hudbay Minerals", "country": "Canada", "exchange": "NYSE" }
+]
