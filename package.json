@@ -4,13 +4,16 @@
   "private": true,
   "description": "Ea-nasir's Copper Gazette — aggregated copper news and prices",
   "type": "module",
-  "engines": { "node": ">=20" },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "fetch:news": "node scripts/fetch-news.mjs",
     "fetch:prices": "node scripts/fetch-prices.mjs",
-    "fetch": "npm run fetch:news && npm run fetch:prices",
+    "fetch": "npm run fetch:news && npm run fetch:prices && npm run fetch:charts",
     "test": "node --test test/*.test.mjs",
-    "serve": "npx --yes serve site"
+    "serve": "npx --yes serve site",
+    "fetch:charts": "node scripts/fetch-charts.mjs"
   },
   "dependencies": {
     "rss-parser": "^3.13.0"

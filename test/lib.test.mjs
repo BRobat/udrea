@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import Parser from 'rss-parser';
 import {
-  isCopperRelated, isCopperHeadline, canonicalSource, isJunkTitle, googleArticleId, decodeOldStyleId,
+  isCopperRelated, isCopperHeadline, parseYahooSeries, LB_PER_KG, canonicalSource, isJunkTitle, googleArticleId, decodeOldStyleId,
   parseGoogleSignature, parseBatchExecuteResponse, buildBatchExecuteBody, decodeGoogleNewsUrl, extractItemImage, extractOgImage, unifySourceSpellings, stripHtml, truncate, splitGoogleTitle, normalizeItem, mergeArticles, buildPrices, LB_PER_TONNE,
 } from '../scripts/lib.mjs';
 
@@ -176,4 +176,21 @@ test('isCopperHeadline: copper must be the subject', () => {
   for (const t of keep) assert.ok(isCopperHeadline(t), t);
   for (const t of drop) assert.ok(!isCopperHeadline(t), t);
   assert.ok(!isCopperHeadline('Copper Valley wins again', 'https://news.example.com/sports/local/123'));
+});
+
+test('parseYahooSeries: points, unit scaling and pence', () => {
+  const chart = (currency, closes) => ({ chart: { result: [{
+    meta: { currency, regularMarketPrice: 2, regularMarketTime: 300 },
+    timestamp: [100, 200, 300],
+    indicators: { quote: [{ close: closes }] },
+  }] } });
+  const cu = parseYahooSeries(chart('USD', [5, null, 6]), { scale: LB_PER_KG, unit: 'kg' });
+  assert.deepEqual(cu.points.map((p) => p[0]), [100, 300]);
+  assert.equal(cu.points[0][1], Number((5 * LB_PER_KG).toPrecision(6)));
+  assert.equal(cu.last, Number((2 * LB_PER_KG).toPrecision(6)));
+  assert.equal(cu.points.at(-1)[1], cu.last); // newest point follows the live price
+  const anto = parseYahooSeries(chart('GBp', [1500, 1510, 1520]));
+  assert.equal(anto.currency, 'GBP');
+  assert.equal(anto.points[0][1], 15);
+  assert.throws(() => parseYahooSeries({ chart: { result: null, error: { description: 'No data found' } } }), /No data/);
 });

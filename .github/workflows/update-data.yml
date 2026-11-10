@@ -28,6 +28,8 @@ jobs:
         run: npm run fetch:news
       - name: Fetch prices
         run: npm run fetch:prices
+      - name: Fetch chart history
+        run: npm run fetch:charts
       - name: Commit data if changed
         run: |
           git config user.name "github-actions[bot]"
