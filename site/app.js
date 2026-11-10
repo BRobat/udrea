@@ -2,7 +2,7 @@
   'use strict';
 
   const $ = (id) => document.getElementById(id);
-  const state = { articles: [], source: 'all', query: '' };
+  const state = { articles: [], source: 'all', query: '', chipsExpanded: false };
 
   // ---------- Images (logo + tablet) with graceful fallbacks ----------
   const logo = $('logo');
@@ -79,15 +79,17 @@
   }
 
   // ---------- Prices ----------
+  const LB_PER_KG = 2.20462262;
   async function loadPrices() {
     try {
       const p = await getJson('data/prices.json');
       const c = p.comex || {};
-      $('p-comex').textContent = c.price != null ? `$${nf(3).format(c.price)}/lb` : '—';
+      // COMEX quotes USD per pound; show USD per kilogram instead.
+      $('p-comex').textContent = c.price != null ? `$${nf(2).format(c.price * LB_PER_KG)}/kg` : '—';
       const ch = $('p-change');
       if (c.change != null && c.changePct != null) {
         const up = c.change >= 0;
-        ch.textContent = `${up ? '▲' : '▼'} ${nf(3).format(Math.abs(c.change))} (${up ? '+' : '−'}${nf(2).format(Math.abs(c.changePct))}%)`;
+        ch.textContent = `${up ? '▲' : '▼'} ${nf(2).format(Math.abs(c.change * LB_PER_KG))} (${up ? '+' : '−'}${nf(2).format(Math.abs(c.changePct))}%)`;
         ch.className = `tick-change ${up ? 'up' : 'down'}`;
       }
       const conv = p.conversions || {};
@@ -110,10 +112,12 @@
   }
 
   // ---------- News ----------
+  const CHIP_LIMIT = 8;
+
   function renderChips() {
     const counts = new Map();
     for (const a of state.articles) counts.set(a.source, (counts.get(a.source) || 0) + 1);
-    const sources = [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    const sources = [...counts.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
     const chips = $('chips');
     chips.replaceChildren();
     const mk = (value, label, n) => {
@@ -127,7 +131,23 @@
       return b;
     };
     chips.append(mk('all', 'All sources', state.articles.length));
-    for (const [s, n] of sources) chips.append(mk(s, s, n));
+
+    // Collapsed by default: the biggest sources, plus the selected one so the active filter stays visible.
+    const shown = state.chipsExpanded
+      ? sources
+      : sources.filter(([s], i) => i < CHIP_LIMIT || s === state.source);
+    for (const [s, n] of shown) chips.append(mk(s, s, n));
+
+    const hidden = sources.length - shown.length;
+    if (hidden > 0 || state.chipsExpanded) {
+      const toggle = el('button', { class: 'chip chip-more', type: 'button', 'aria-expanded': String(!!state.chipsExpanded) },
+        state.chipsExpanded ? 'Show fewer' : `+${hidden} more`);
+      toggle.addEventListener('click', () => {
+        state.chipsExpanded = !state.chipsExpanded;
+        renderChips();
+      });
+      chips.append(toggle);
+    }
   }
 
   // Simple string hash so each story keeps the same generated artwork between visits.
@@ -144,8 +164,8 @@
       el('span', { class: 'art-ingot' }),
       el('span', { class: 'art-ingot art-ingot-2' }),
       el('span', { class: 'art-source' }, a.source || 'Copper'));
-    node.style.setProperty('--rot', `${(h >>> 3) % 40 - 20}deg`);
-    node.style.setProperty('--rot2', `${(h >>> 9) % 50 - 25}deg`);
+    node.style.setProperty('--rot', `${(h >>> 3) % 16 - 8}deg`);
+    node.style.setProperty('--rot2', `${(h >>> 9) % 20 - 10}deg`);
     node.style.setProperty('--size', `${18 + ((h >>> 12) % 14)}%`);
     node.style.setProperty('--x', `${4 + ((h >>> 16) % 14)}%`);
     node.style.setProperty('--y', `${35 + ((h >>> 20) % 30)}%`);
