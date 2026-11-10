@@ -400,7 +400,7 @@ body::before {
 .oxhide {
   position: absolute;
   width: 96px;
-  aspect-ratio: 120 / 64;
+  aspect-ratio: 120 / 56;
   background: url("assets/ingot.svg") center / contain no-repeat;
   filter: drop-shadow(0 8px 10px rgba(61, 34, 12, .35));
   opacity: .9;
@@ -444,7 +444,7 @@ body::before {
   right: var(--x, 7%);
   top: var(--y, 50%);
   width: var(--size, 26%);
-  aspect-ratio: 120 / 64;
+  aspect-ratio: 120 / 56;
   background: url("assets/ingot.svg") center / contain no-repeat;
   transform: translateY(-50%) rotate(var(--rot, -10deg));
   filter: drop-shadow(0 8px 10px rgba(0, 0, 0, .35));
