@@ -30,6 +30,8 @@
 }
 
 * { box-sizing: border-box; }
+/* Elements with their own display rule must still disappear when hidden. */
+[hidden] { display: none !important; }
 html { -webkit-text-size-adjust: 100%; }
 body {
   margin: 0;
@@ -139,7 +141,6 @@ a { color: inherit; }
   color: #3d220c;
   width: fit-content;
 }
-.badge[hidden] { display: none; }
 
 /* ---------- Tablet banner ---------- */
 .tablet-banner {
@@ -250,6 +251,8 @@ h1 {
   color: #fff;
 }
 .chip .n { opacity: .7; margin-left: 4px; }
+.chip-more { border-style: dashed; border-color: var(--copper); color: var(--copper); font-weight: 600; }
+.chip-more:hover { background: var(--bg-2); }
 .meta-line { color: var(--muted); font-size: .8rem; margin: 4px 0 14px; }
 
 .grid {
