@@ -164,8 +164,8 @@
       el('span', { class: 'art-ingot' }),
       el('span', { class: 'art-ingot art-ingot-2' }),
       el('span', { class: 'art-source' }, a.source || 'Copper'));
-    node.style.setProperty('--rot', `${(h >>> 3) % 40 - 20}deg`);
-    node.style.setProperty('--rot2', `${(h >>> 9) % 50 - 25}deg`);
+    node.style.setProperty('--rot', `${(h >>> 3) % 16 - 8}deg`);
+    node.style.setProperty('--rot2', `${(h >>> 9) % 20 - 10}deg`);
     node.style.setProperty('--size', `${18 + ((h >>> 12) % 14)}%`);
     node.style.setProperty('--x', `${4 + ((h >>> 16) % 14)}%`);
     node.style.setProperty('--y', `${35 + ((h >>> 20) % 30)}%`);
