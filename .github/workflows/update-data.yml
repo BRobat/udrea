@@ -2,7 +2,8 @@ name: Update copper data
 
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    # Every 4 hours, at minute 23: off the busy :00/:30 slots, when GitHub delays or skips scheduled runs.
+    - cron: "23 */4 * * *"
   workflow_dispatch:
 
 permissions:

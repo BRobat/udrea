@@ -13,7 +13,7 @@ The site is static and lives in `site/`, hosted on GitHub Pages. Browsers can't 
 | `site/data/news.json` | `scripts/fetch-news.mjs` | RSS feeds listed in `scripts/feeds.json`: Google News queries, MINING.COM, The Northern Miner, Mining Weekly, Investing News Network |
 | `site/data/prices.json` | `scripts/fetch-prices.mjs` | COMEX copper futures `HG=F` (Yahoo Finance chart API) and EUR/USD from Frankfurter (ECB) |
 
-`.github/workflows/update-data.yml` runs every 30 minutes and can also be started manually. It fetches both files, commits any changes, and redeploys the site. `.github/workflows/pages.yml` deploys `site/` on every push to `main`.
+`.github/workflows/update-data.yml` runs every 4 hours (00:23, 04:23, 08:23 … UTC) and can also be started manually from the Actions tab. It fetches both files, commits any changes, and redeploys the site. `.github/workflows/pages.yml` deploys `site/` on every push to `main`.
 
 - If a feed fails, the remaining feeds are still used.
 - If the price fetch fails, the previous price is kept and shown with a **stale** badge.
