@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-14T23:59:17.240Z",
+  "generatedAt": "2026-11-15T06:48:29.808Z",
   "copper": {
     "symbol": "HG=F",
     "name": "Copper (COMEX futures)",
@@ -7,10 +7,6 @@
     "currency": "USD",
     "last": 13.4262,
     "daily": [
-      [
-        1763096400,
-        11.1322
-      ],
       [
         1763355600,
         11.0231
