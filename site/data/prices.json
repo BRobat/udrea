@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-21T21:42:39.429Z",
+  "generatedAt": "2026-11-22T07:05:46.693Z",
   "stale": false,
   "comex": {
     "symbol": "HG=F",
@@ -7,9 +7,9 @@
     "currency": "USD",
     "unit": "lb",
     "price": 5.485,
-    "previousClose": 5.9975,
-    "change": -0.5125,
-    "changePct": -8.55,
+    "previousClose": 5.976,
+    "change": -0.491,
+    "changePct": -8.22,
     "marketTime": "2026-11-20T21:59:55.000Z"
   },
   "conversions": {
